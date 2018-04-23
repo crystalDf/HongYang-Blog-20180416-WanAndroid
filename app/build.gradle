@@ -31,4 +31,7 @@ dependencies {
     implementation "me.yokeyword:fragmentation-swipeback:$rootProject.fragmentationVersion"
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
 }

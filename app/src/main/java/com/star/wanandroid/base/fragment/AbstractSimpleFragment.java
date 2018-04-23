@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.leakcanary.RefWatcher;
 import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.utils.CommonUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

@@ -1,7 +1,6 @@
 package com.star.wanandroid.base.fragment;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.star.wanandroid.R;
 import com.star.wanandroid.app.WanAndroidApp;
@@ -9,18 +8,18 @@ import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.utils.CommonUtils;
 
-public abstract class BaseFragment<T extends AbstractPresenter> extends AbstractSimpleFragment implements BaseView {
+public abstract class BaseDialogFragment<T extends AbstractPresenter> extends AbstractSimpleDialogFragment implements BaseView {
 
     @Inject
     protected T mPresenter;
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initInject();
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
-        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -39,14 +38,14 @@ public abstract class BaseFragment<T extends AbstractPresenter> extends Abstract
     }
 
     @Override
-    public void useNightMode(boolean isNightMode) {
+    public void showErrorMsg(String errorMsg) {
+        if (getActivity() != null) {
+            CommonUtils.showSnackMessage(getActivity(), errorMsg);
+        }
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
-        if (isAdded()) {
-            CommonUtils.showSnackMessage(_mActivity, errorMsg);
-        }
+    public void useNightMode(boolean isNightMode) {
     }
 
     @Override
@@ -71,12 +70,16 @@ public abstract class BaseFragment<T extends AbstractPresenter> extends Abstract
 
     @Override
     public void showCollectFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.collect_fail));
+        if (getActivity() != null) {
+            CommonUtils.showSnackMessage(getActivity(), getString(R.string.collect_fail));
+        }
     }
 
     @Override
     public void showCancelCollectFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.cancel_collect_fail));
+        if (getActivity() != null) {
+            CommonUtils.showSnackMessage(getActivity(), getString(R.string.cancel_collect_fail));
+        }
     }
 
     @Override
