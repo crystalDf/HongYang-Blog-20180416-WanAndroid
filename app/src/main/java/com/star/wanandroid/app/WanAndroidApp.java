@@ -6,10 +6,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.star.wanandroid.R;
+import com.star.wanandroid.core.dao.DaoMaster;
+import com.star.wanandroid.core.dao.DaoSession;
+import com.star.wanandroid.di.component.AppComponent;
+import com.star.wanandroid.di.module.AppModule;
+import com.star.wanandroid.di.module.HttpModule;
 import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.logger.TxtFormatStrategy;
 
 import java.util.logging.Logger;
 
