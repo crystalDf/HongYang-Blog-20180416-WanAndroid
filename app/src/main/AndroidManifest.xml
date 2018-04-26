@@ -26,11 +26,11 @@
         </activity>
         
         <activity
-            android:name="json.chao.com.wanandroid.ui.main.activity.MainActivity"
+            android:name="ui.main.activity.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" />
 
-        <activity android:name="json.chao.com.wanandroid.ui.main.activity.LoginActivity"
+        <activity android:name="ui.main.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:exported="false" />
@@ -40,17 +40,17 @@
             android:launchMode="singleTop"
             android:exported="false" />
 
-        <activity android:name="json.chao.com.wanandroid.ui.main.activity.ArticleDetailActivity"
+        <activity android:name="ui.main.activity.ArticleDetailActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:exported="false" />
 
-        <activity android:name="json.chao.com.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity"
+        <activity android:name="ui.hierarchy.activity.KnowledgeHierarchyDetailActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:exported="false" />
 
-        <activity android:name="json.chao.com.wanandroid.ui.main.activity.AboutUsActivity"
+        <activity android:name="ui.main.activity.AboutUsActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:exported="false" />

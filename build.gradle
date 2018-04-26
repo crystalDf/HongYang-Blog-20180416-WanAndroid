@@ -43,5 +43,8 @@ ext {
     leakcanaryVersion = '1.5.4'
     lottieVersion = '2.5.4'
     smartrefreshVersion = '1.1.0-alpha-5'
+    rxpermissionsVersion = '0.9.5@aar'
+    glideVersion ='4.7.1'
+    multidexVersion = '1.0.3'
 }
 

@@ -3,14 +3,14 @@ package com.star.wanandroid.ui.main.activity;
 import android.content.Intent;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.activity.BaseActivity;
+import com.star.wanandroid.contract.main.SplashContract;
+import com.star.wanandroid.presenter.main.SplashPresenter;
+import com.star.wanandroid.utils.StatusBarUtil;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.WanAndroidApp;
-import json.chao.com.wanandroid.base.activity.BaseActivity;
-import json.chao.com.wanandroid.contract.main.SplashContract;
-import json.chao.com.wanandroid.presenter.main.SplashPresenter;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
 
 /**
  * @author quchao
