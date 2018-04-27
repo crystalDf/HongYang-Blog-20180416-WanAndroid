@@ -46,5 +46,7 @@ ext {
     rxpermissionsVersion = '0.9.5@aar'
     glideVersion ='4.7.1'
     multidexVersion = '1.0.3'
+    buglyVersion = '1.3.4'
+    loggerVersion = '2.2.0'
 }
 

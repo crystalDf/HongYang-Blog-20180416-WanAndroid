@@ -2,9 +2,13 @@ package com.star.wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+
+import com.star.wanandroid.component.ActivityCollector;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class AbstractSimpleActivity extends SupportActivity {
 

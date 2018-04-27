@@ -52,7 +52,7 @@ public class DaoMaster extends AbstractDaoMaster {
             super(context, name, SCHEMA_VERSION);
         }
 
-        public OpenHelper(Context context, String name, CursorFactory factory) {
+        public OpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
             super(context, name, factory, SCHEMA_VERSION);
         }
 
@@ -69,7 +69,7 @@ public class DaoMaster extends AbstractDaoMaster {
             super(context, name);
         }
 
-        public DevOpenHelper(Context context, String name, CursorFactory factory) {
+        public DevOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
             super(context, name, factory);
         }
 

@@ -8,6 +8,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.bumptech.glide.Glide;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.DiskLogAdapter;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
+import com.scwang.smartrefresh.header.DeliveryHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.squareup.leakcanary.LeakCanary;
@@ -20,8 +25,7 @@ import com.star.wanandroid.di.module.AppModule;
 import com.star.wanandroid.di.module.HttpModule;
 import com.star.wanandroid.utils.CommonUtils;
 import com.star.wanandroid.utils.logger.TxtFormatStrategy;
-
-import java.util.logging.Logger;
+import com.tencent.bugly.crashreport.CrashReport;
 
 public class WanAndroidApp extends Application {
 
@@ -34,13 +38,13 @@ public class WanAndroidApp extends Application {
     static {
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO);
-        SmartRefreshLayout.setDefaultRefreshHeaderCreater((context, refreshLayout) -> {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, refreshLayout) -> {
             //全局设置主题颜色
             refreshLayout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
             //指定为Delivery Header，默认是贝塞尔雷达Header
             return new DeliveryHeader(context);
         });
-        SmartRefreshLayout.setDefaultRefreshFooterCreater((context, layout) -> {
+        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
             //默认是 BallPulseFooter
             return new BallPulseFooter(context).setAnimatingColor(ContextCompat.getColor(context, R.color.colorPrimary));
         });

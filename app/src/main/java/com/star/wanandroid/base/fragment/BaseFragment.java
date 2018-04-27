@@ -1,12 +1,15 @@
 package com.star.wanandroid.base.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.star.wanandroid.R;
 import com.star.wanandroid.app.WanAndroidApp;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.di.component.FragmentComponent;
+import com.star.wanandroid.di.module.FragmentModule;
 import com.star.wanandroid.utils.CommonUtils;
 
 public abstract class BaseFragment<T extends AbstractPresenter> extends AbstractSimpleFragment implements BaseView {

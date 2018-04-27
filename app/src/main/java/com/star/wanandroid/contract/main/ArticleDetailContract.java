@@ -4,6 +4,7 @@ import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 public interface ArticleDetailContract {
 

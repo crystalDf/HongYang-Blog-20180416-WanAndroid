@@ -2,6 +2,9 @@ package com.star.wanandroid.contract.main;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 
 public interface SearchListContract {
 
