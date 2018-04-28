@@ -2,16 +2,17 @@ package com.star.wanandroid.di.component;
 
 import android.app.Activity;
 
+import com.star.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
+import com.star.wanandroid.ui.main.activity.AboutUsActivity;
+import com.star.wanandroid.ui.main.activity.ArticleDetailActivity;
+import com.star.wanandroid.ui.main.activity.LoginActivity;
+import com.star.wanandroid.ui.main.activity.MainActivity;
+import com.star.wanandroid.ui.main.activity.SearchListActivity;
+import com.star.wanandroid.ui.main.activity.SplashActivity;
+
 import dagger.Component;
 import json.chao.com.wanandroid.di.module.ActivityModule;
 import json.chao.com.wanandroid.di.scope.ActivityScope;
-import json.chao.com.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
-import json.chao.com.wanandroid.ui.main.activity.AboutUsActivity;
-import json.chao.com.wanandroid.ui.main.activity.ArticleDetailActivity;
-import json.chao.com.wanandroid.ui.main.activity.LoginActivity;
-import json.chao.com.wanandroid.ui.main.activity.MainActivity;
-import json.chao.com.wanandroid.ui.main.activity.SearchListActivity;
-import json.chao.com.wanandroid.ui.main.activity.SplashActivity;
 
 
 /**

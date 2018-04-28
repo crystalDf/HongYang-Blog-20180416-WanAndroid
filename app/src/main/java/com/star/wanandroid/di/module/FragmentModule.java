@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.support.v4.app.Fragment;
 
+import com.star.wanandroid.di.scope.FragmentScope;
 
 import dagger.Module;
 import dagger.Provides;
-import json.chao.com.wanandroid.di.scope.FragmentScope;
 
 /**
  * @author quchao

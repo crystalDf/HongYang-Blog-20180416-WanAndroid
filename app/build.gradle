@@ -55,7 +55,10 @@ dependencies {
 
     implementation "com.android.support:multidex:$rootProject.multidexVersion"
 
-    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation "com.tencent.bugly:crashreport_upgrade:$rootProject.buglyVersion"
 
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
+
+    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
 }

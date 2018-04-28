@@ -2,10 +2,10 @@ package com.star.wanandroid.di.module;
 
 import android.app.Activity;
 
+import com.star.wanandroid.di.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
-import json.chao.com.wanandroid.di.scope.ActivityScope;
 
 /**
  * @author quchao

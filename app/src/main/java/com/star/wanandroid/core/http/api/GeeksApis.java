@@ -1,5 +1,27 @@
 package com.star.wanandroid.core.http.api;
 
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.core.bean.main.banner.BannerData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.bean.main.login.LoginData;
+import com.star.wanandroid.core.bean.main.search.TopSearchData;
+import com.star.wanandroid.core.bean.main.search.UsefulSiteData;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.core.bean.project.ProjectClassifyData;
+import com.star.wanandroid.core.bean.project.ProjectListData;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+
 public interface GeeksApis {
 
     String HOST = "http://www.wanandroid.com/";

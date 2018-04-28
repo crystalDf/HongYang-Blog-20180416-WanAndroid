@@ -1,5 +1,20 @@
 package com.star.wanandroid.core.http;
 
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.core.bean.main.banner.BannerData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.bean.main.login.LoginData;
+import com.star.wanandroid.core.bean.main.search.TopSearchData;
+import com.star.wanandroid.core.bean.main.search.UsefulSiteData;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.core.bean.project.ProjectClassifyData;
+import com.star.wanandroid.core.bean.project.ProjectListData;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+
 public interface HttpHelper {
 
     /**

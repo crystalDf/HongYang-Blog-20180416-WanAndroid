@@ -1,5 +1,11 @@
 package com.star.wanandroid.di.module;
 
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.core.http.api.GeeksApis;
+import com.star.wanandroid.core.http.cookies.CookiesManager;
+import com.star.wanandroid.di.qualifier.WanAndroidUrl;
+import com.star.wanandroid.utils.CommonUtils;
+
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import json.chao.com.wanandroid.BuildConfig;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -14,12 +21,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import json.chao.com.wanandroid.core.http.api.GeeksApis;
-import json.chao.com.wanandroid.BuildConfig;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.core.http.cookies.CookiesManager;
-import json.chao.com.wanandroid.di.qualifier.WanAndroidUrl;
-import json.chao.com.wanandroid.utils.CommonUtils;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

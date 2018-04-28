@@ -1,16 +1,14 @@
 package com.star.wanandroid.di.component;
 
 
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.di.module.AppModule;
+import com.star.wanandroid.di.module.HttpModule;
+
 import javax.inject.Singleton;
 
 import dagger.Component;
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.core.db.GreenDaoHelper;
-import json.chao.com.wanandroid.core.http.RetrofitHelper;
-import json.chao.com.wanandroid.core.prefs.PreferenceHelperImpl;
-import json.chao.com.wanandroid.app.WanAndroidApp;
-import json.chao.com.wanandroid.di.module.AppModule;
-import json.chao.com.wanandroid.di.module.HttpModule;
 
 /**
  * @author quchao

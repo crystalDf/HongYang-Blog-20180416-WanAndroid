@@ -1,5 +1,9 @@
 package com.star.wanandroid.core.db;
 
+import com.star.wanandroid.core.dao.HistoryData;
+
+import java.util.List;
+
 public interface DbHelper {
 
     /**

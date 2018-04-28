@@ -4,6 +4,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Property;
 
+import org.greenrobot.greendao.AbstractDao;
+import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.internal.DaoConfig;
+
 public class HistoryDataDao extends AbstractDao<HistoryData, Void> {
 
     public static final String TABLENAME = "HISTORY_DATA";

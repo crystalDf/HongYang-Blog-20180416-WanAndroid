@@ -1,6 +1,23 @@
 package com.star.wanandroid.core;
 
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.core.bean.main.banner.BannerData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.bean.main.login.LoginData;
+import com.star.wanandroid.core.bean.main.search.TopSearchData;
+import com.star.wanandroid.core.bean.main.search.UsefulSiteData;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.core.bean.project.ProjectClassifyData;
+import com.star.wanandroid.core.bean.project.ProjectListData;
+import com.star.wanandroid.core.dao.HistoryData;
+import com.star.wanandroid.core.db.DbHelper;
 import com.star.wanandroid.core.http.HttpHelper;
+import com.star.wanandroid.core.prefs.PreferenceHelper;
+
+import java.util.List;
+
+import io.reactivex.Observable;
 
 public class DataManager implements HttpHelper, DbHelper, PreferenceHelper {
 

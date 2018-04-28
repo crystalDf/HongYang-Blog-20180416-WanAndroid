@@ -1,6 +1,12 @@
 package com.star.wanandroid.core.db;
 
 import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.core.dao.DaoSession;
+import com.star.wanandroid.core.dao.HistoryData;
+import com.star.wanandroid.core.dao.HistoryDataDao;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class GreenDaoHelper implements DbHelper {
 

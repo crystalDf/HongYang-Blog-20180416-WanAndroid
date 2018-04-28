@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import okhttp3.Cookie;
+
 public class OkHttpCookies implements Serializable {
 
     private transient final Cookie cookies;

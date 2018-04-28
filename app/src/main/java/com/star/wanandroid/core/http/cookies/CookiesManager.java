@@ -1,5 +1,13 @@
 package com.star.wanandroid.core.http.cookies;
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
+
 public class CookiesManager implements CookieJar {
 
     private static final PersistentCookieStore COOKIE_STORE = new PersistentCookieStore();
