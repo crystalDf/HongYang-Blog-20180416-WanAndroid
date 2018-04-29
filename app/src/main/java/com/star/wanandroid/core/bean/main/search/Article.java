@@ -2,24 +2,6 @@ package com.star.wanandroid.core.bean.main.search;
 
 public class Article {
 
-    /**
-     * id : 1541
-     * title :  Android开发中dip，dpi，density，px等详解
-     * chapterId : 198
-     * chapterName : 基础概念
-     * envelopePic : null
-     * link : http://www.jianshu.com/p/cd66b7e01d4a
-     * author : 希灵丶
-     * origin : null
-     * publishTime : 1511766156000
-     * zan : null
-     * desc : null
-     * visible : 0
-     * niceDate : 1天前
-     * courseId : 13
-     * collect : false
-     */
-
     private int id;
     private String title;
     private int chapterId;
