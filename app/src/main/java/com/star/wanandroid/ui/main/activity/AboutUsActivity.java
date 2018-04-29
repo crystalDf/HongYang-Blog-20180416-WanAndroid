@@ -22,13 +22,13 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
+import com.star.wanandroid.R;
+import com.star.wanandroid.base.activity.AbstractSimpleActivity;
+import com.star.wanandroid.utils.StatusBarUtil;
+import com.star.wanandroid.widget.interpolator.ElasticOutInterpolator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.base.activity.AbstractSimpleActivity;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
-import json.chao.com.wanandroid.widget.interpolator.ElasticOutInterpolator;
 
 /**
  * @author quchao

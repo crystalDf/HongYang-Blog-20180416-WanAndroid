@@ -4,6 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import org.greenrobot.greendao.AbstractDaoMaster;
+import org.greenrobot.greendao.database.Database;
+import org.greenrobot.greendao.database.DatabaseOpenHelper;
+import org.greenrobot.greendao.database.StandardDatabase;
+import org.greenrobot.greendao.identityscope.IdentityScopeType;
+
 public class DaoMaster extends AbstractDaoMaster {
     public static final int SCHEMA_VERSION = 1;
 

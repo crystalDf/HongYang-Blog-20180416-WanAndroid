@@ -14,6 +14,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.base.fragment.BaseDialogFragment;
+import com.star.wanandroid.contract.main.UsageDialogContract;
+import com.star.wanandroid.core.bean.main.search.UsefulSiteData;
+import com.star.wanandroid.presenter.main.UsageDialogPresenter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
+import com.star.wanandroid.widget.CircularRevealAnim;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -22,15 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.base.fragment.BaseDialogFragment;
-import json.chao.com.wanandroid.contract.main.UsageDialogContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.search.UsefulSiteData;
-import json.chao.com.wanandroid.presenter.main.UsageDialogPresenter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
-import json.chao.com.wanandroid.widget.CircularRevealAnim;
 
 /**
  * @author quchao
@@ -83,12 +82,8 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
     }
 
     @Override
-    public void showUsefulSites(BaseResponse<List<UsefulSiteData>> usefulSitesResponse) {
-        if (usefulSitesResponse == null) {
-            showUsefulSitesDataFail();
-            return;
-        }
-        mUsefulSiteDataList = usefulSitesResponse.getData();
+    public void showUsefulSites(List<UsefulSiteData> usefulSiteDataList) {
+        mUsefulSiteDataList = usefulSiteDataList;
         mUsefulSitesFlowLayout.setAdapter(new TagAdapter<UsefulSiteData>(mUsefulSiteDataList) {
             @Override
             public View getView(FlowLayout parent, int position, UsefulSiteData usefulSiteData) {
@@ -114,11 +109,6 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
                 return tv;
             }
         });
-    }
-
-    @Override
-    public void showUsefulSitesDataFail() {
-        CommonUtils.showSnackMessage(getActivity(), getString(R.string.failed_to_obtain_useful_sites_data));
     }
 
     @Override

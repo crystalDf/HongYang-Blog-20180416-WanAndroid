@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.hierarchy;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 
@@ -13,32 +12,27 @@ public interface KnowledgeHierarchyListContract {
         /**
          * Show Knowledge Hierarchy Detail Data
          *
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showKnowledgeHierarchyDetailData(BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showKnowledgeHierarchyDetailData(FeedArticleListData feedArticleListData);
 
         /**
          * Show collect article data
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
         /**
          * Show cancel collect article data
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
-
-        /**
-         * Show knowledge hierarchy detail data fail
-         */
-        void showKnowledgeHierarchyDetailDataFail();
+        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
         /**
          * Show jump the top

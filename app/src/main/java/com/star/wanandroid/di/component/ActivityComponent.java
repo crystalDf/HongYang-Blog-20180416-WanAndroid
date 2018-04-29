@@ -2,6 +2,8 @@ package com.star.wanandroid.di.component;
 
 import android.app.Activity;
 
+import com.star.wanandroid.di.module.ActivityModule;
+import com.star.wanandroid.di.scope.ActivityScope;
 import com.star.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
 import com.star.wanandroid.ui.main.activity.AboutUsActivity;
 import com.star.wanandroid.ui.main.activity.ArticleDetailActivity;
@@ -11,8 +13,6 @@ import com.star.wanandroid.ui.main.activity.SearchListActivity;
 import com.star.wanandroid.ui.main.activity.SplashActivity;
 
 import dagger.Component;
-import json.chao.com.wanandroid.di.module.ActivityModule;
-import json.chao.com.wanandroid.di.scope.ActivityScope;
 
 
 /**
@@ -21,7 +21,7 @@ import json.chao.com.wanandroid.di.scope.ActivityScope;
  */
 
 @ActivityScope
-@Component(dependencies = json.chao.com.wanandroid.di.component.AppComponent.class, modules = ActivityModule.class)
+@Component(dependencies = com.star.wanandroid.di.component.AppComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
 
     /**

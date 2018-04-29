@@ -8,24 +8,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.contract.main.CollectContract;
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.presenter.main.CollectPresenter;
+import com.star.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.contract.main.CollectContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleListData;
-import json.chao.com.wanandroid.presenter.main.CollectPresenter;
-import json.chao.com.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
-
 
 /**
  * @author quchao
@@ -68,23 +67,17 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
     }
 
     @Override
-    public void showCollectList(BaseResponse<FeedArticleListData> feedArticleListResponse) {
-        if (feedArticleListResponse == null
-                || feedArticleListResponse.getData() == null
-                || feedArticleListResponse.getData().getDatas() == null) {
-            showCollectListFail();
-            return;
-        }
+    public void showCollectList(FeedArticleListData feedArticleListData) {
         if (mAdapter == null) {
             return;
         }
-        mArticles = feedArticleListResponse.getData().getDatas();
+        mArticles = feedArticleListData.getDatas();
         if (isRefresh) {
             mAdapter.replaceData(mArticles);
         } else {
             if (mArticles.size() > 0) {
-                mArticles.addAll(feedArticleListResponse.getData().getDatas());
-                mAdapter.addData(feedArticleListResponse.getData().getDatas());
+                mArticles.addAll(feedArticleListData.getDatas());
+                mAdapter.addData(feedArticleListData.getDatas());
             } else {
                 if (mAdapter.getData().size() != 0) {
                     CommonUtils.showMessage(_mActivity, getString(R.string.load_more_no_data));
@@ -98,15 +91,9 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
     }
 
     @Override
-    public void showCancelCollectPageArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCancelCollectPageArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.remove(position);
         CommonUtils.showSnackMessage(_mActivity, getString(R.string.cancel_collect_success));
-    }
-
-    @Override
-    public void showCollectListFail() {
-        showError();
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_collection_data));
     }
 
     @Override
@@ -151,12 +138,12 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
             }
             mOptions = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.share_view));
             JudgeUtils.startArticleDetailActivity(_mActivity, mOptions,
-                mAdapter.getData().get(position).getId(),
-                mAdapter.getData().get(position).getTitle(),
-                mAdapter.getData().get(position).getLink(),
-                true,
-                true,
-                false);
+                    mAdapter.getData().get(position).getId(),
+                    mAdapter.getData().get(position).getTitle(),
+                    mAdapter.getData().get(position).getLink(),
+                    true,
+                    true,
+                    false);
         });
 
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {

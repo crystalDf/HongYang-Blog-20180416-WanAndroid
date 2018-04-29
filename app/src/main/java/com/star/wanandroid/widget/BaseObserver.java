@@ -2,12 +2,13 @@ package com.star.wanandroid.widget;
 
 import android.text.TextUtils;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.core.http.exception.ServerException;
+import com.star.wanandroid.utils.LogHelper;
+
 import io.reactivex.observers.ResourceObserver;
-import json.chao.com.wanandroid.app.WanAndroidApp;
-import json.chao.com.wanandroid.core.http.exception.ServerException;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.utils.LogHelper;
-import json.chao.com.wanandroid.base.view.BaseView;
 import retrofit2.HttpException;
 
 /**

@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.project;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.project.ProjectClassifyData;
 
 import java.util.List;
@@ -14,14 +13,9 @@ public interface ProjectContract {
         /**
          * Show project classify data
          *
-         * @param projectClassifyResponse List<ProjectClassifyData>
+         * @param projectClassifyDataList List<ProjectClassifyData>
          */
-        void showProjectClassifyData(BaseResponse<List<ProjectClassifyData>> projectClassifyResponse);
-
-        /**
-         * Show project calssify data fail
-         */
-        void showProjectClassifyDataFail();
+        void showProjectClassifyData(List<ProjectClassifyData> projectClassifyDataList);
 
     }
 
@@ -46,4 +40,5 @@ public interface ProjectContract {
 
 
     }
+
 }

@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.main;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -13,16 +12,16 @@ public interface ArticleDetailContract {
         /**
          * Show collect article data
          *
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCollectArticleData(BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showCollectArticleData(FeedArticleListData feedArticleListData);
 
         /**
          * Show cancel collect article data
          *
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData feedArticleListData
          */
-        void showCancelCollectArticleData(BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showCancelCollectArticleData(FeedArticleListData feedArticleListData);
 
         /**
          * Share event

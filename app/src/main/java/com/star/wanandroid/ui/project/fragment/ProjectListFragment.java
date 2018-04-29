@@ -8,23 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.contract.project.ProjectListContract;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.bean.project.ProjectListData;
+import com.star.wanandroid.presenter.project.ProjectListPresenter;
+import com.star.wanandroid.ui.project.adapter.ProjectListAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleListData;
-import json.chao.com.wanandroid.core.bean.project.ProjectListData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.contract.project.ProjectListContract;
-import json.chao.com.wanandroid.presenter.project.ProjectListPresenter;
-import json.chao.com.wanandroid.ui.project.adapter.ProjectListAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
 
 /**
  * @author quchao
@@ -63,18 +61,18 @@ public class ProjectListFragment extends AbstractRootFragment<ProjectListPresent
         mDatas = new ArrayList<>();
         mAdapter = new ProjectListAdapter(R.layout.item_project_list, mDatas);
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
-                    if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() <= position) {
-                        return;
-                    }
-                    JudgeUtils.startArticleDetailActivity(_mActivity,
-                            null,
-                            mAdapter.getData().get(position).getId(),
-                            mAdapter.getData().get(position).getTitle().trim(),
-                            mAdapter.getData().get(position).getLink().trim(),
-                            mAdapter.getData().get(position).isCollect(),
-                            false,
-                            true);
-                });
+            if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() <= position) {
+                return;
+            }
+            JudgeUtils.startArticleDetailActivity(_mActivity,
+                    null,
+                    mAdapter.getData().get(position).getId(),
+                    mAdapter.getData().get(position).getTitle().trim(),
+                    mAdapter.getData().get(position).getLink().trim(),
+                    mAdapter.getData().get(position).isCollect(),
+                    false,
+                    true);
+        });
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             switch (view.getId()) {
                 case R.id.item_project_list_install_tv:
@@ -108,14 +106,15 @@ public class ProjectListFragment extends AbstractRootFragment<ProjectListPresent
     }
 
     @Override
-    public void showProjectListData(BaseResponse<ProjectListData> projectListResponse) {
-        if (projectListResponse == null || projectListResponse.getData() == null ||
-                projectListResponse.getData().getDatas() == null) {
-            showProjectListFail();
-            return;
+    public void reload() {
+        if (mPresenter != null) {
+            mPresenter.getProjectListData(0, cid);
         }
-        mDatas = projectListResponse.getData().getDatas();
+    }
 
+    @Override
+    public void showProjectListData(ProjectListData projectListData) {
+        mDatas = projectListData.getDatas();
         if (isRefresh) {
             mAdapter.replaceData(mDatas);
         } else {
@@ -129,28 +128,15 @@ public class ProjectListFragment extends AbstractRootFragment<ProjectListPresent
     }
 
     @Override
-    public void reload() {
-        if (mPresenter != null) {
-            mPresenter.getProjectListData(0, cid);
-        }
-    }
-
-    @Override
-    public void showCollectOutsideArticle(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCollectOutsideArticle(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(_mActivity, getString(R.string.collect_success));
     }
 
     @Override
-    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(_mActivity, getString(R.string.cancel_collect_success));
-    }
-
-    @Override
-    public void showProjectListFail() {
-        showError();
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_project_list));
     }
 
     @Override

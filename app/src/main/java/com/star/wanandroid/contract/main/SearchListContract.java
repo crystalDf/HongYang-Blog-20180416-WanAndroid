@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.main;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 
@@ -13,36 +12,31 @@ public interface SearchListContract {
         /**
          * Show search list
          *
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showSearchList(BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showSearchList(FeedArticleListData feedArticleListData);
 
         /**
          * Show collect article data
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
         /**
          * Show cancel collect article data
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
-
-        /**
-         * Show search list fail
-         */
-        void showSearchListFail();
+        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
     }
 
-    interface Presenter extends AbstractPresenter<View> {
+    interface Presenter extends AbstractPresenter<SearchListContract.View> {
 
         /**
          * 搜索
@@ -68,4 +62,5 @@ public interface SearchListContract {
         void cancelCollectArticle(int position, FeedArticleData feedArticleData);
 
     }
+
 }

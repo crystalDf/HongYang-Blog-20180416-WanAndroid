@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
-import json.chao.com.wanandroid.R;
-
 /**
  * @author quchao
  * @date 2018/2/26

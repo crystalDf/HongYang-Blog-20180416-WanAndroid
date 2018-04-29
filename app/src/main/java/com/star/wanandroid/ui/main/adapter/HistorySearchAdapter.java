@@ -3,13 +3,12 @@ package com.star.wanandroid.ui.main.adapter;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.R;
+import com.star.wanandroid.core.dao.HistoryData;
+import com.star.wanandroid.ui.main.viewholder.SearchHistoryViewHolder;
+import com.star.wanandroid.utils.CommonUtils;
 
 import java.util.List;
-
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.core.dao.HistoryData;
-import json.chao.com.wanandroid.ui.main.viewholder.SearchHistoryViewHolder;
-import json.chao.com.wanandroid.utils.CommonUtils;
 
 /**
  * @author quchao

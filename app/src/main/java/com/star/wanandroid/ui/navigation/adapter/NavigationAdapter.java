@@ -8,19 +8,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.ui.navigation.viewholder.NavigationViewHolder;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.List;
-
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.core.bean.navigation.NavigationListData;
-import json.chao.com.wanandroid.ui.navigation.viewholder.NavigationViewHolder;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
-
 
 /**
  * @author quchao

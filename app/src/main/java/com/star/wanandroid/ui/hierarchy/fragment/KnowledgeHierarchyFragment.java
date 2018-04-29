@@ -9,20 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.contract.hierarchy.KnowledgeHierarchyContract;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.presenter.hierarchy.KnowledgeHierarchyPresenter;
+import com.star.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
+import com.star.wanandroid.ui.hierarchy.adapter.KnowledgeHierarchyAdapter;
+import com.star.wanandroid.utils.CommonUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.contract.hierarchy.KnowledgeHierarchyContract;
-import json.chao.com.wanandroid.presenter.hierarchy.KnowledgeHierarchyPresenter;
-import json.chao.com.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
-import json.chao.com.wanandroid.ui.hierarchy.adapter.KnowledgeHierarchyAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
 
 /**
  * @author quchao
@@ -67,7 +66,7 @@ public class KnowledgeHierarchyFragment extends AbstractRootFragment<KnowledgeHi
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.share_view));
             Intent intent = new Intent(_mActivity, KnowledgeHierarchyDetailActivity.class);
             intent.putExtra(Constants.ARG_PARAM1, mAdapter.getData().get(position));
-            if (!Build.BOARD.contains("samsung") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Build.MANUFACTURER.contains("samsung") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 startActivity(intent, options.toBundle());
             } else {
                 startActivity(intent);
@@ -87,18 +86,14 @@ public class KnowledgeHierarchyFragment extends AbstractRootFragment<KnowledgeHi
     }
 
     @Override
-    public void showKnowledgeHierarchyData(BaseResponse<List<KnowledgeHierarchyData>> knowledgeHierarchyResponse) {
-        if (knowledgeHierarchyResponse == null || knowledgeHierarchyResponse.getData() == null) {
-            showKnowledgeHierarchyDetailDataFail();
-            return;
-        }
+    public void showKnowledgeHierarchyData(List<KnowledgeHierarchyData> knowledgeHierarchyDataList) {
         if (mPresenter.getCurrentPage() == 1) {
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
             mRecyclerView.setVisibility(View.INVISIBLE);
         }
-        if (mAdapter.getData().size() < knowledgeHierarchyResponse.getData().size()) {
-            mKnowledgeHierarchyDataList = knowledgeHierarchyResponse.getData();
+        if (mAdapter.getData().size() < knowledgeHierarchyDataList.size()) {
+            mKnowledgeHierarchyDataList = knowledgeHierarchyDataList;
             mAdapter.replaceData(mKnowledgeHierarchyDataList);
         } else {
             if (!isRefresh) {
@@ -106,11 +101,6 @@ public class KnowledgeHierarchyFragment extends AbstractRootFragment<KnowledgeHi
             }
         }
         showNormal();
-    }
-
-    @Override
-    public void showKnowledgeHierarchyDetailDataFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_knowledge_data));
     }
 
     @Override

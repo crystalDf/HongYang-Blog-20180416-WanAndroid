@@ -2,29 +2,26 @@ package com.star.wanandroid.ui.project.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.base.fragment.BaseFragment;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.project.ProjectContract;
+import com.star.wanandroid.core.bean.project.ProjectClassifyData;
+import com.star.wanandroid.core.event.JumpToTheTopEvent;
+import com.star.wanandroid.presenter.project.ProjectPresenter;
+import com.star.wanandroid.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.base.fragment.BaseFragment;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.contract.project.ProjectContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.project.ProjectClassifyData;
-import json.chao.com.wanandroid.core.event.JumpToTheTopEvent;
-import json.chao.com.wanandroid.presenter.project.ProjectPresenter;
-import json.chao.com.wanandroid.utils.CommonUtils;
 
 /**
  * @author quchao
@@ -80,11 +77,7 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
     }
 
     @Override
-    public void showProjectClassifyData(BaseResponse<List<ProjectClassifyData>> projectClassifyResponse) {
-        if (projectClassifyResponse == null || projectClassifyResponse.getData() == null) {
-            showProjectClassifyDataFail();
-            return;
-        }
+    public void showProjectClassifyData(List<ProjectClassifyData> projectClassifyDataList) {
         if (mPresenter.getCurrentPage() == Constants.TYPE_PROJECT) {
             mTabLayout.setVisibility(View.VISIBLE);
             mDivider.setVisibility(View.VISIBLE);
@@ -94,12 +87,12 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
             mDivider.setVisibility(View.INVISIBLE);
             mViewPager.setVisibility(View.INVISIBLE);
         }
-        mData = projectClassifyResponse.getData();
+        mData = projectClassifyDataList;
         for (ProjectClassifyData data : mData) {
-            json.chao.com.wanandroid.ui.project.fragment.ProjectListFragment projectListFragment = json.chao.com.wanandroid.ui.project.fragment.ProjectListFragment.getInstance(data.getId(), null);
+            ProjectListFragment projectListFragment = ProjectListFragment.getInstance(data.getId(), null);
             mFragments.add(projectListFragment);
         }
-        mViewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+        mViewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mFragments.get(position);
@@ -114,17 +107,7 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
             public CharSequence getPageTitle(int position) {
                 return mData.get(position).getName();
             }
-
-            @Override
-            public int getItemPosition(Object object) {
-                return PagerAdapter.POSITION_NONE;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-            }
         });
-
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -141,15 +124,9 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
 
             }
         });
-
         mTabLayout.setViewPager(mViewPager);
         mViewPager.setCurrentItem(Constants.TAB_ONE);
         showNormal();
-    }
-
-    @Override
-    public void showProjectClassifyDataFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_project_classify_data));
     }
 
     @Override
@@ -174,4 +151,3 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
     }
 
 }
-

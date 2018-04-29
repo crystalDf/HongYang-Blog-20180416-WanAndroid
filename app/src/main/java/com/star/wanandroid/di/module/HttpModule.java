@@ -1,5 +1,6 @@
 package com.star.wanandroid.di.module;
 
+import com.star.wanandroid.BuildConfig;
 import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.core.http.api.GeeksApis;
 import com.star.wanandroid.core.http.cookies.CookiesManager;
@@ -13,7 +14,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import json.chao.com.wanandroid.BuildConfig;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;

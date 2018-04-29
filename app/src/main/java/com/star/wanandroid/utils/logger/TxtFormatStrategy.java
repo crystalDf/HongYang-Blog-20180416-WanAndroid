@@ -7,13 +7,12 @@ import android.text.TextUtils;
 
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogStrategy;
+import com.star.wanandroid.utils.CommonUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import json.chao.com.wanandroid.utils.CommonUtils;
 
 import static com.orhanobut.logger.Logger.ASSERT;
 import static com.orhanobut.logger.Logger.DEBUG;

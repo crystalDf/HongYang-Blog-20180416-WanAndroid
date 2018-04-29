@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.project;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 import com.star.wanandroid.core.bean.project.ProjectListData;
@@ -14,32 +13,27 @@ public interface ProjectListContract {
         /**
          * Show project list data
          *
-         * @param projectListResponse BaseResponse<ProjectListData>
+         * @param projectListData ProjectListData
          */
-        void showProjectListData(BaseResponse<ProjectListData> projectListResponse);
+        void showProjectListData(ProjectListData projectListData);
 
         /**
          * Show article list
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCollectOutsideArticle(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
+        void showCollectOutsideArticle(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
         /**
          * Show cancel collect article data
          *
          * @param position Position
          * @param feedArticleData FeedArticleData
-         * @param feedArticleListResponse BaseResponse<FeedArticleListData>
+         * @param feedArticleListData FeedArticleListData
          */
-        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse);
-
-        /**
-         * Show project list fail
-         */
-        void showProjectListFail();
+        void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData);
 
         /**
          * Show jump to the top
@@ -74,4 +68,5 @@ public interface ProjectListContract {
          */
         void cancelCollectArticle(int position, FeedArticleData feedArticleData);
     }
+
 }

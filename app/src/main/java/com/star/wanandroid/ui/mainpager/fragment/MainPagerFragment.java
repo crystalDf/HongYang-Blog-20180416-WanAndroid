@@ -12,6 +12,25 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.mainpager.MainPagerContract;
+import com.star.wanandroid.core.bean.main.banner.BannerData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.event.AutoLoginEvent;
+import com.star.wanandroid.core.event.LoginEvent;
+import com.star.wanandroid.core.event.SwitchNavigationEvent;
+import com.star.wanandroid.core.event.SwitchProjectEvent;
+import com.star.wanandroid.core.http.cookies.CookiesManager;
+import com.star.wanandroid.presenter.mainpager.MainPagerPresenter;
+import com.star.wanandroid.ui.main.activity.LoginActivity;
+import com.star.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.GlideImageLoader;
+import com.star.wanandroid.utils.JudgeUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -20,26 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.banner.BannerData;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.contract.mainpager.MainPagerContract;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleListData;
-import json.chao.com.wanandroid.core.event.AutoLoginEvent;
-import json.chao.com.wanandroid.core.event.LoginEvent;
-import json.chao.com.wanandroid.core.event.SwitchNavigationEvent;
-import json.chao.com.wanandroid.core.event.SwitchProjectEvent;
-import json.chao.com.wanandroid.core.http.cookies.CookiesManager;
-import json.chao.com.wanandroid.presenter.mainpager.MainPagerPresenter;
-import json.chao.com.wanandroid.ui.main.activity.LoginActivity;
-import json.chao.com.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.GlideImageLoader;
-import json.chao.com.wanandroid.utils.JudgeUtils;
 
 /**
  * @author quchao
@@ -192,12 +191,7 @@ public class MainPagerFragment extends AbstractRootFragment<MainPagerPresenter> 
     }
 
     @Override
-    public void showArticleList(BaseResponse<FeedArticleListData> feedArticleListResponse, boolean isRefresh) {
-        if (feedArticleListResponse == null || feedArticleListResponse.getData() == null
-                || feedArticleListResponse.getData().getDatas() == null) {
-            showArticleListFail();
-            return;
-        }
+    public void showArticleList(FeedArticleListData feedArticleListData, boolean isRefresh) {
         if (mPresenter.getCurrentPage() == Constants.TYPE_MAIN_PAGER) {
             mRecyclerView.setVisibility(View.VISIBLE);
         } else {
@@ -208,37 +202,32 @@ public class MainPagerFragment extends AbstractRootFragment<MainPagerPresenter> 
             return;
         }
         if (isRefresh) {
-            mFeedArticleDataList = feedArticleListResponse.getData().getDatas();
-            mAdapter.replaceData(feedArticleListResponse.getData().getDatas());
+            mFeedArticleDataList = feedArticleListData.getDatas();
+            mAdapter.replaceData(feedArticleListData.getDatas());
         } else {
-            mFeedArticleDataList.addAll(feedArticleListResponse.getData().getDatas());
-            mAdapter.addData(feedArticleListResponse.getData().getDatas());
+            mFeedArticleDataList.addAll(feedArticleListData.getDatas());
+            mAdapter.addData(feedArticleListData.getDatas());
         }
         showNormal();
     }
 
     @Override
-    public void showCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(_mActivity, getString(R.string.collect_success));
     }
 
     @Override
-    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(_mActivity, getString(R.string.cancel_collect_success));
     }
 
     @Override
-    public void showBannerData(BaseResponse<List<BannerData>> bannerResponse) {
-        if (bannerResponse == null || bannerResponse.getData() == null) {
-            showBannerDataFail();
-            return;
-        }
+    public void showBannerData(List<BannerData> bannerDataList) {
         mBannerTitleList = new ArrayList<>();
         List<String> bannerImageList = new ArrayList<>();
         mBannerUrlList = new ArrayList<>();
-        List<BannerData> bannerDataList = bannerResponse.getData();
         for (BannerData bannerData : bannerDataList) {
             mBannerTitleList.add(bannerData.getTitle());
             bannerImageList.add(bannerData.getImagePath());
@@ -276,16 +265,6 @@ public class MainPagerFragment extends AbstractRootFragment<MainPagerPresenter> 
     @Override
     public void showLogoutView() {
         mPresenter.getFeedArticleList();
-    }
-
-    @Override
-    public void showArticleListFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_article_list));
-    }
-
-    @Override
-    public void showBannerDataFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_banner_data));
     }
 
     @Override

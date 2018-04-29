@@ -7,19 +7,20 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.BaseFragment;
+import com.star.wanandroid.component.ACache;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.main.SettingContract;
+import com.star.wanandroid.core.event.NightModeEvent;
+import com.star.wanandroid.presenter.main.SettingPresenter;
+import com.star.wanandroid.utils.ShareUtil;
+
 import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.fragment.BaseFragment;
-import json.chao.com.wanandroid.component.ACache;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.contract.main.SettingContract;
-import json.chao.com.wanandroid.core.event.NightModeEvent;
-import json.chao.com.wanandroid.presenter.main.SettingPresenter;
-import json.chao.com.wanandroid.utils.ShareUtil;
 
 /**
  * @author quchao

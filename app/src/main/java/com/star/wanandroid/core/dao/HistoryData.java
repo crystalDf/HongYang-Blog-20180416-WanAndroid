@@ -1,5 +1,8 @@
 package com.star.wanandroid.core.dao;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+
 @Entity
 public class HistoryData {
 

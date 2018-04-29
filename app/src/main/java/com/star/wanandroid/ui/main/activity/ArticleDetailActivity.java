@@ -15,22 +15,22 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.activity.BaseActivity;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.main.ArticleDetailContract;
+import com.star.wanandroid.core.bean.BaseResponse;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.event.CollectEvent;
+import com.star.wanandroid.presenter.main.ArticleDetailPresenter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.StatusBarUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.lang.reflect.Method;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.activity.BaseActivity;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.contract.main.ArticleDetailContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleListData;
-import json.chao.com.wanandroid.core.event.CollectEvent;
-import json.chao.com.wanandroid.presenter.main.ArticleDetailPresenter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
 
 /**
  * @author quchao
@@ -225,7 +225,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     private void collectEvent() {
         if (!mPresenter.getLoginStatus()) {
             CommonUtils.showMessage(this, getString(R.string.login_tint));
-            startActivity(new Intent(this, json.chao.com.wanandroid.ui.main.activity.LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         } else {
             if (mCollectItem.getTitle().equals(getString(R.string.collect))) {
                 mPresenter.addCollectArticle(articleId);

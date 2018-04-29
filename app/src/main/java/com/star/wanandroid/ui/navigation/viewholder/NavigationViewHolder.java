@@ -8,7 +8,6 @@ import com.zhy.view.flowlayout.FlowLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import json.chao.com.wanandroid.R;
 
 /**
  * @author quchao

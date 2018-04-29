@@ -8,12 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.R;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.ui.mainpager.viewholder.KnowledgeHierarchyListViewHolder;
 
 import java.util.List;
-
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.ui.mainpager.viewholder.KnowledgeHierarchyListViewHolder;
 
 /**
  * @author quchao

@@ -2,11 +2,24 @@ package com.star.wanandroid.ui.main.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.base.activity.BaseActivity;
 import com.star.wanandroid.base.fragment.BaseFragment;
 import com.star.wanandroid.component.RxBus;
@@ -15,8 +28,20 @@ import com.star.wanandroid.core.event.LoginEvent;
 import com.star.wanandroid.core.http.cookies.CookiesManager;
 import com.star.wanandroid.presenter.main.MainPresenter;
 import com.star.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.star.wanandroid.ui.main.fragment.SearchDialogFragment;
+import com.star.wanandroid.ui.main.fragment.UsageDialogFragment;
+import com.star.wanandroid.ui.mainpager.fragment.MainPagerFragment;
+import com.star.wanandroid.ui.navigation.fragment.NavigationFragment;
+import com.star.wanandroid.ui.project.fragment.ProjectFragment;
+import com.star.wanandroid.utils.BottomNavigationViewHelper;
+import com.star.wanandroid.utils.CommonAlertDialog;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.StatusBarUtil;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
@@ -37,16 +62,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private ArrayList<BaseFragment> mFragments;
     private TextView mUsTv;
-    private json.chao.com.wanandroid.ui.mainpager.fragment.MainPagerFragment mMainPagerFragment;
+    private MainPagerFragment mMainPagerFragment;
     private KnowledgeHierarchyFragment mKnowledgeHierarchyFragment;
-    private json.chao.com.wanandroid.ui.navigation.fragment.NavigationFragment mNavigationFragment;
-    private json.chao.com.wanandroid.ui.project.fragment.ProjectFragment mProjectFragment;
+    private NavigationFragment mNavigationFragment;
+    private ProjectFragment mProjectFragment;
     private int mLastFgIndex;
+    private UsageDialogFragment usageDialogFragment;
+    private SearchDialogFragment searchDialogFragment;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        json.chao.com.wanandroid.utils.CommonAlertDialog.newInstance().cancelDialog(true);
+        CommonAlertDialog.newInstance().cancelDialog(true);
     }
 
     @Override
@@ -95,11 +122,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_usage:
-                UsageDialogFragment usageDialogFragment = new UsageDialogFragment();
+                if (usageDialogFragment == null) {
+                    usageDialogFragment = new UsageDialogFragment();
+                }
                 usageDialogFragment.show(getSupportFragmentManager(), "UsageDialogFragment");
                 break;
             case R.id.action_search:
-                SearchDialogFragment searchDialogFragment = new SearchDialogFragment();
+                if (searchDialogFragment == null) {
+                    searchDialogFragment = new SearchDialogFragment();
+                }
                 searchDialogFragment.show(getSupportFragmentManager(), "SearchDialogFragment");
                 break;
             default:
@@ -380,13 +411,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 getString(R.string.ok),
                 getString(R.string.no),
                 v -> {
-                    json.chao.com.wanandroid.utils.CommonAlertDialog.newInstance().cancelDialog(true);
+                    CommonAlertDialog.newInstance().cancelDialog(true);
                     mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
                     mPresenter.setLoginStatus(false);
                     CookiesManager.clearAllCookies();
                     RxBus.getDefault().post(new LoginEvent(false));
                     startActivity(new Intent(this, LoginActivity.class));
                 },
-                v -> json.chao.com.wanandroid.utils.CommonAlertDialog.newInstance().cancelDialog(true));
+                v -> CommonAlertDialog.newInstance().cancelDialog(true));
     }
 }

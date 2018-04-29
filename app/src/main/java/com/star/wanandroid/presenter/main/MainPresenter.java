@@ -1,20 +1,20 @@
 package com.star.wanandroid.presenter.main;
 
-import javax.inject.Inject;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.main.MainContract;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.core.event.AutoLoginEvent;
+import com.star.wanandroid.core.event.LoginEvent;
+import com.star.wanandroid.core.event.NightModeEvent;
+import com.star.wanandroid.core.event.SwitchNavigationEvent;
+import com.star.wanandroid.core.event.SwitchProjectEvent;
+import com.star.wanandroid.utils.RxUtils;
+import com.star.wanandroid.widget.BaseSubscribe;
 
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.WanAndroidApp;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.main.MainContract;
-import json.chao.com.wanandroid.core.event.AutoLoginEvent;
-import json.chao.com.wanandroid.core.event.LoginEvent;
-import json.chao.com.wanandroid.core.event.NightModeEvent;
-import json.chao.com.wanandroid.core.event.SwitchNavigationEvent;
-import json.chao.com.wanandroid.core.event.SwitchProjectEvent;
-import json.chao.com.wanandroid.utils.RxUtils;
-import json.chao.com.wanandroid.widget.BaseSubscribe;
+import javax.inject.Inject;
 
 
 /**

@@ -8,6 +8,8 @@ import com.star.wanandroid.core.dao.HistoryDataDao;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GreenDaoHelper implements DbHelper {
 
     private DaoSession daoSession;

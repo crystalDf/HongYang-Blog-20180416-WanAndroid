@@ -2,33 +2,31 @@ package com.star.wanandroid.ui.hierarchy.activity;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.activity.BaseActivity;
+import com.star.wanandroid.base.fragment.BaseFragment;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.hierarchy.KnowledgeHierarchyDetailContract;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.core.event.KnowledgeJumpTopEvent;
+import com.star.wanandroid.presenter.hierarchy.KnowledgeHierarchyDetailPresenter;
+import com.star.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyListFragment;
+import com.star.wanandroid.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.activity.BaseActivity;
-import json.chao.com.wanandroid.base.fragment.BaseFragment;
-import json.chao.com.wanandroid.contract.hierarchy.KnowledgeHierarchyDetailContract;
-import json.chao.com.wanandroid.core.event.KnowledgeJumpTopEvent;
-import json.chao.com.wanandroid.presenter.hierarchy.KnowledgeHierarchyDetailPresenter;
-import json.chao.com.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyListFragment;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
 
 /**
  * @author quchao
@@ -66,7 +64,7 @@ public class KnowledgeHierarchyDetailActivity extends BaseActivity<KnowledgeHier
     @Override
     protected void initEventAndData() {
         initToolbar();
-        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mFragments.get(position);
@@ -84,16 +82,6 @@ public class KnowledgeHierarchyDetailActivity extends BaseActivity<KnowledgeHier
                 } else {
                     return knowledgeHierarchyDataList.get(position).getName();
                 }
-            }
-
-            @Override
-            public int getItemPosition(Object object) {
-                return PagerAdapter.POSITION_NONE;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-
             }
         });
         mTabLayout.setViewPager(mViewPager);

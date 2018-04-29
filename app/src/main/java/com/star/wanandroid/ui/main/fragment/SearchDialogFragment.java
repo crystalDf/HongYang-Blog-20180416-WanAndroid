@@ -23,6 +23,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.BaseDialogFragment;
+import com.star.wanandroid.contract.main.SearchContract;
+import com.star.wanandroid.core.bean.main.search.TopSearchData;
+import com.star.wanandroid.core.dao.HistoryData;
+import com.star.wanandroid.presenter.main.SearchPresenter;
+import com.star.wanandroid.ui.main.adapter.HistorySearchAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
+import com.star.wanandroid.utils.KeyBoardUtils;
+import com.star.wanandroid.widget.CircularRevealAnim;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -34,20 +46,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.fragment.BaseDialogFragment;
-import json.chao.com.wanandroid.contract.main.SearchContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.search.TopSearchData;
-import json.chao.com.wanandroid.core.dao.HistoryData;
-import json.chao.com.wanandroid.presenter.main.SearchPresenter;
-import json.chao.com.wanandroid.ui.main.adapter.HistorySearchAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
-import json.chao.com.wanandroid.utils.KeyBoardUtils;
-import json.chao.com.wanandroid.widget.CircularRevealAnim;
-
 
 /**
  * @author quchao
@@ -105,7 +103,7 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchPresenter> im
     protected int getLayout() {
         return R.layout.fragment_search;
     }
-    
+
     @Override
     protected void initEventAndData() {
         initCircleAnimation();
@@ -143,35 +141,6 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchPresenter> im
     }
 
     @Override
-    public void showTopSearchData(BaseResponse<List<TopSearchData>> topSearchDataResponse) {
-        if (topSearchDataResponse == null) {
-            showTopSearchDataFail();
-            return;
-        }
-        mTopSearchDataList = topSearchDataResponse.getData();
-        mTopSearchFlowLayout.setAdapter(new TagAdapter<TopSearchData>(mTopSearchDataList) {
-            @Override
-            public View getView(FlowLayout parent, int position, TopSearchData topSearchData) {
-                assert getActivity() != null;
-                TextView tv = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.flow_layout_tv,
-                        parent, false);
-                assert topSearchData != null;
-                String name = topSearchData.getName();
-                tv.setText(name);
-                setItemBackground(tv);
-                mTopSearchFlowLayout.setOnTagClickListener((view, position1, parent1) -> {
-                    mPresenter.addHistoryData(mTopSearchDataList.get(position1).getName().trim());
-                    setHistoryTvStatus(false);
-                    mSearchEdit.setText(mTopSearchDataList.get(position1).getName().trim());
-                    mSearchEdit.setSelection(mSearchEdit.getText().length());
-                    return true;
-                });
-                return tv;
-            }
-        });
-    }
-
-    @Override
     public void showHistoryData(List<HistoryData> historyDataList) {
         if (historyDataList == null || historyDataList.size() <= 0) {
             setHistoryTvStatus(true);
@@ -192,8 +161,28 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchPresenter> im
     }
 
     @Override
-    public void showTopSearchDataFail() {
-        CommonUtils.showSnackMessage(getActivity(), getString(R.string.failed_to_obtain_top_data));
+    public void showTopSearchData(List<TopSearchData> topSearchDataList) {
+        mTopSearchDataList = topSearchDataList;
+        mTopSearchFlowLayout.setAdapter(new TagAdapter<TopSearchData>(mTopSearchDataList) {
+            @Override
+            public View getView(FlowLayout parent, int position, TopSearchData topSearchData) {
+                assert getActivity() != null;
+                TextView tv = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.flow_layout_tv,
+                        parent, false);
+                assert topSearchData != null;
+                String name = topSearchData.getName();
+                tv.setText(name);
+                setItemBackground(tv);
+                mTopSearchFlowLayout.setOnTagClickListener((view, position1, parent1) -> {
+                    mPresenter.addHistoryData(mTopSearchDataList.get(position1).getName().trim());
+                    setHistoryTvStatus(false);
+                    mSearchEdit.setText(mTopSearchDataList.get(position1).getName().trim());
+                    mSearchEdit.setSelection(mSearchEdit.getText().length());
+                    return true;
+                });
+                return tv;
+            }
+        });
     }
 
     @Override

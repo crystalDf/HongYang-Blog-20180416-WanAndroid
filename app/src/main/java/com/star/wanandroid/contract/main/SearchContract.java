@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.main;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.search.TopSearchData;
 import com.star.wanandroid.core.dao.HistoryData;
 
@@ -22,14 +21,9 @@ public interface SearchContract {
         /**
          * Show top search data
          *
-         * @param topSearchDataResponse BaseResponse<List<TopSearchData>>
+         * @param topSearchDataList List<TopSearchData>
          */
-        void showTopSearchData(BaseResponse<List<TopSearchData>> topSearchDataResponse);
-
-        /**
-         * Show top search data fail
-         */
-        void showTopSearchDataFail();
+        void showTopSearchData(List<TopSearchData> topSearchDataList);
 
         /**
          * Judge to the search list activity
@@ -64,4 +58,5 @@ public interface SearchContract {
          */
         void clearHistoryData();
     }
+
 }

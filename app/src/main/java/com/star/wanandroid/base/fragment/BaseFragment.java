@@ -12,6 +12,8 @@ import com.star.wanandroid.di.component.FragmentComponent;
 import com.star.wanandroid.di.module.FragmentModule;
 import com.star.wanandroid.utils.CommonUtils;
 
+import javax.inject.Inject;
+
 public abstract class BaseFragment<T extends AbstractPresenter> extends AbstractSimpleFragment implements BaseView {
 
     @Inject

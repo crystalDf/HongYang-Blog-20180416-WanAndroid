@@ -25,40 +25,63 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //base
+    // base
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
 
-    //ui
-
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-    implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
-    implementation "me.yokeyword:fragmentation-swipeback:$rootProject.fragmentationVersion"
-    implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
-    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
+    // ui
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
-    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
+    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
+    implementation "com.flyco.tablayout:FlycoTabLayout_Lib:$rootProject.tablayoutVersion"
+    implementation "q.rorbin:VerticalTabLayout:$rootProject.verticalTabLayoutVersion"
+    implementation "com.hyman:flowlayout-lib:$rootProject.flowlayoutVersion"
+    implementation "com.just.agentweb:agentweb:$rootProject.justVersion"
 
+    // net
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
+    // dao
+    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
+
+    // di
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // multidex
     implementation "com.android.support:multidex:$rootProject.multidexVersion"
 
+    // other
+    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.cymChadVersion"
+    implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+    implementation "me.yokeyword:fragmentation-swipeback:$rootProject.fragmentationVersion"
     implementation "com.tencent.bugly:crashreport_upgrade:$rootProject.buglyVersion"
-
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
 
-    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    // canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.leakcanaryVersion"
+
+    // unit test
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
 }

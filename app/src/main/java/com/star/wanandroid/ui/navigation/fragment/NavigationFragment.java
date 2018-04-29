@@ -7,18 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.fragment.AbstractRootFragment;
+import com.star.wanandroid.contract.navigation.NavigationContract;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.presenter.navigation.NavigationPresenter;
+import com.star.wanandroid.ui.navigation.adapter.NavigationAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+
 import java.util.List;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.base.fragment.AbstractRootFragment;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.navigation.NavigationListData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.contract.navigation.NavigationContract;
-import json.chao.com.wanandroid.presenter.navigation.NavigationPresenter;
-import json.chao.com.wanandroid.ui.navigation.adapter.NavigationAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
 import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.ITabView;
@@ -75,16 +74,11 @@ public class NavigationFragment extends AbstractRootFragment<NavigationPresenter
     }
 
     @Override
-    public void showNavigationListData(BaseResponse<List<NavigationListData>> navigationListResponse) {
-        if (navigationListResponse == null || navigationListResponse.getData() == null) {
-            showNavigationListFail();
-            return;
-        }
-        List<NavigationListData> navigationListData = navigationListResponse.getData();
+    public void showNavigationListData(List<NavigationListData> navigationDataList) {
         mTabLayout.setTabAdapter(new TabAdapter() {
             @Override
             public int getCount() {
-                return navigationListData == null ? 0 : navigationListData.size();
+                return navigationDataList == null ? 0 : navigationDataList.size();
             }
 
             @Override
@@ -100,7 +94,7 @@ public class NavigationFragment extends AbstractRootFragment<NavigationPresenter
             @Override
             public ITabView.TabTitle getTitle(int i) {
                 return new TabView.TabTitle.Builder()
-                        .setContent(navigationListData.get(i).getName())
+                        .setContent(navigationDataList.get(i).getName())
                         .setTextColor(ContextCompat.getColor(_mActivity, R.color.shallow_green),
                                 ContextCompat.getColor(_mActivity, R.color.shallow_grey))
                         .build();
@@ -120,17 +114,12 @@ public class NavigationFragment extends AbstractRootFragment<NavigationPresenter
             mTabLayout.setVisibility(View.INVISIBLE);
             mDivider.setVisibility(View.INVISIBLE);
         }
-        NavigationAdapter adapter = new NavigationAdapter(R.layout.item_navigation, navigationListData);
+        NavigationAdapter adapter = new NavigationAdapter(R.layout.item_navigation, navigationDataList);
         mRecyclerView.setAdapter(adapter);
         mManager = new LinearLayoutManager(_mActivity);
         mRecyclerView.setLayoutManager(mManager);
         leftRightLinkage();
         showNormal();
-    }
-
-    @Override
-    public void showNavigationListFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_navigation_list));
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.star.wanandroid.contract.navigation;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.navigation.NavigationListData;
 
 import java.util.List;
@@ -14,14 +13,10 @@ public interface NavigationContract {
         /**
          * Show navigation list data
          *
-         * @param navigationListResponse BaseResponse<List<NavigationListData>>
+         * @param navigationDataList List<NavigationListData>
          */
-        void showNavigationListData(BaseResponse<List<NavigationListData>> navigationListResponse);
+        void showNavigationListData(List<NavigationListData> navigationDataList);
 
-        /**
-         * Show navigation list fail
-         */
-        void showNavigationListFail();
     }
 
     interface Presenter extends AbstractPresenter<View> {
@@ -31,4 +26,5 @@ public interface NavigationContract {
          */
         void getNavigationListData();
     }
+
 }

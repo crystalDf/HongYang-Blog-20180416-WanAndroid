@@ -1,16 +1,17 @@
 package com.star.wanandroid.presenter.hierarchy;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.hierarchy.KnowledgeHierarchyContract;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.utils.RxUtils;
+import com.star.wanandroid.widget.BaseObserver;
+
 import java.util.List;
 
 import javax.inject.Inject;
-
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.hierarchy.KnowledgeHierarchyContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
-import json.chao.com.wanandroid.utils.RxUtils;
-import json.chao.com.wanandroid.widget.BaseObserver;
 
 /**
  * @author quchao
@@ -31,17 +32,15 @@ public class KnowledgeHierarchyPresenter extends BasePresenter<KnowledgeHierarch
     @Override
     public void getKnowledgeHierarchyData() {
         addSubscribe(mDataManager.getKnowledgeHierarchyData()
-                        .compose(RxUtils.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse<List<KnowledgeHierarchyData>>>(mView) {
-                            @Override
-                            public void onNext(BaseResponse<List<KnowledgeHierarchyData>> knowledgeHierarchyResponse) {
-                                if (knowledgeHierarchyResponse.getErrorCode() == BaseResponse.SUCCESS) {
-                                    mView.showKnowledgeHierarchyData(knowledgeHierarchyResponse);
-                                } else {
-                                    mView.showKnowledgeHierarchyDetailDataFail();
-                                }
-                            }
-                        }));
+                .compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(new BaseObserver<List<KnowledgeHierarchyData>>(mView,
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_knowledge_data)) {
+                    @Override
+                    public void onNext(List<KnowledgeHierarchyData> knowledgeHierarchyDataList) {
+                        mView.showKnowledgeHierarchyData(knowledgeHierarchyDataList);
+                    }
+                }));
     }
 
 

@@ -17,6 +17,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.star.wanandroid.BuildConfig;
 import com.star.wanandroid.R;
 import com.star.wanandroid.core.dao.DaoMaster;
 import com.star.wanandroid.core.dao.DaoSession;
@@ -38,13 +39,13 @@ public class WanAndroidApp extends Application {
     static {
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO);
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, refreshLayout) -> {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreater((context, refreshLayout) -> {
             //全局设置主题颜色
             refreshLayout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
             //指定为Delivery Header，默认是贝塞尔雷达Header
             return new DeliveryHeader(context);
         });
-        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+        SmartRefreshLayout.setDefaultRefreshFooterCreater((context, layout) -> {
             //默认是 BallPulseFooter
             return new BallPulseFooter(context).setAnimatingColor(ContextCompat.getColor(context, R.color.colorPrimary));
         });
@@ -139,4 +140,5 @@ public class WanAndroidApp extends Application {
         }
         return appComponent;
     }
+
 }

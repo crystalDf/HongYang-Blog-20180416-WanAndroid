@@ -1,16 +1,16 @@
 package com.star.wanandroid.presenter.main;
 
 
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.main.SplashContract;
+import com.star.wanandroid.core.DataManager;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.main.SplashContract;
-
 
 /**
  * @author quchao
@@ -32,8 +32,8 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
         super.attachView(view);
         long splashTime = 2000;
         addSubscribe(Observable.timer(splashTime, TimeUnit.MILLISECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(aLong -> view.jumpToMain()));
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> view.jumpToMain()));
     }
 
 }

@@ -10,10 +10,13 @@ import com.star.wanandroid.di.component.ActivityComponent;
 import com.star.wanandroid.di.module.ActivityModule;
 import com.star.wanandroid.utils.CommonUtils;
 
+import javax.inject.Inject;
+
 public abstract class BaseActivity<T extends AbstractPresenter> extends AbstractSimpleActivity implements BaseView {
 
     @Inject
     protected T mPresenter;
+    private ActivityComponent mBuild;
 
     @Override
     protected void onDestroy() {
@@ -24,10 +27,13 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
     }
 
     protected ActivityComponent getActivityComponent() {
-        return DaggerActivityComponent.builder()
-                .appComponent(WanAndroidApp.getAppComponent())
-                .activityModule(new ActivityModule(this))
-                .build();
+        if (mBuild == null) {
+            mBuild = DaggerActivityComponent.builder()
+                    .appComponent(WanAndroidApp.getAppComponent())
+                    .activityModule(new ActivityModule(this))
+                    .build();
+        }
+        return mBuild;
     }
 
     @Override

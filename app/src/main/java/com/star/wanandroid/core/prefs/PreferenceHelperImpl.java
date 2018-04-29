@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.app.WanAndroidApp;
 
+import javax.inject.Inject;
+
 public class PreferenceHelperImpl implements PreferenceHelper {
 
     private static final String MY_SHARED_PREFERENCE = "my_shared_preference";

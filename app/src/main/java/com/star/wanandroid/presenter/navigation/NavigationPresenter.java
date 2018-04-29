@@ -1,16 +1,17 @@
 package com.star.wanandroid.presenter.navigation;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.navigation.NavigationContract;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.core.bean.navigation.NavigationListData;
+import com.star.wanandroid.utils.RxUtils;
+import com.star.wanandroid.widget.BaseObserver;
+
 import java.util.List;
 
 import javax.inject.Inject;
-
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.navigation.NavigationContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.navigation.NavigationListData;
-import json.chao.com.wanandroid.utils.RxUtils;
-import json.chao.com.wanandroid.widget.BaseObserver;
 
 /**
  * @author quchao
@@ -35,17 +36,15 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
     @Override
     public void getNavigationListData() {
         addSubscribe(mDataManager.getNavigationListData()
-                        .compose(RxUtils.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse<List<NavigationListData>>>(mView) {
-                            @Override
-                            public void onNext(BaseResponse<List<NavigationListData>> navigationListResponse) {
-                                if (navigationListResponse.getErrorCode() == BaseResponse.SUCCESS) {
-                                    mView.showNavigationListData(navigationListResponse);
-                                } else {
-                                    mView.showNavigationListFail();
-                                }
-                            }
-                        }));
+                .compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(new BaseObserver<List<NavigationListData>>(mView,
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_navigation_list)) {
+                    @Override
+                    public void onNext(List<NavigationListData> navigationDataList) {
+                        mView.showNavigationListData(navigationDataList);
+                    }
+                }));
     }
 
 }

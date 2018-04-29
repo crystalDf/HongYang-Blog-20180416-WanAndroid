@@ -2,20 +2,20 @@ package com.star.wanandroid.di.component;
 
 import android.app.Activity;
 
+import com.star.wanandroid.di.module.FragmentModule;
+import com.star.wanandroid.di.scope.FragmentScope;
+import com.star.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.star.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyListFragment;
+import com.star.wanandroid.ui.main.activity.CollectFragment;
+import com.star.wanandroid.ui.main.activity.SettingFragment;
+import com.star.wanandroid.ui.main.fragment.SearchDialogFragment;
+import com.star.wanandroid.ui.main.fragment.UsageDialogFragment;
+import com.star.wanandroid.ui.mainpager.fragment.MainPagerFragment;
+import com.star.wanandroid.ui.navigation.fragment.NavigationFragment;
+import com.star.wanandroid.ui.project.fragment.ProjectFragment;
+import com.star.wanandroid.ui.project.fragment.ProjectListFragment;
 
 import dagger.Component;
-import json.chao.com.wanandroid.di.module.FragmentModule;
-import json.chao.com.wanandroid.di.scope.FragmentScope;
-import json.chao.com.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
-import json.chao.com.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyListFragment;
-import json.chao.com.wanandroid.ui.main.activity.CollectFragment;
-import json.chao.com.wanandroid.ui.main.activity.SettingFragment;
-import json.chao.com.wanandroid.ui.main.fragment.UsageDialogFragment;
-import json.chao.com.wanandroid.ui.mainpager.fragment.MainPagerFragment;
-import json.chao.com.wanandroid.ui.navigation.fragment.NavigationFragment;
-import json.chao.com.wanandroid.ui.project.fragment.ProjectFragment;
-import json.chao.com.wanandroid.ui.project.fragment.ProjectListFragment;
-import json.chao.com.wanandroid.ui.main.fragment.SearchDialogFragment;
 
 /**
  * @author quchao

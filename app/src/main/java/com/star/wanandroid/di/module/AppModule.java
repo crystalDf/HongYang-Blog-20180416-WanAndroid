@@ -4,16 +4,16 @@ package com.star.wanandroid.di.module;
 import com.star.wanandroid.app.WanAndroidApp;
 import com.star.wanandroid.core.DataManager;
 import com.star.wanandroid.core.db.DbHelper;
+import com.star.wanandroid.core.db.GreenDaoHelper;
 import com.star.wanandroid.core.http.HttpHelper;
+import com.star.wanandroid.core.http.RetrofitHelper;
 import com.star.wanandroid.core.prefs.PreferenceHelper;
+import com.star.wanandroid.core.prefs.PreferenceHelperImpl;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import json.chao.com.wanandroid.core.db.GreenDaoHelper;
-import json.chao.com.wanandroid.core.http.RetrofitHelper;
-import json.chao.com.wanandroid.core.prefs.PreferenceHelperImpl;
 
 /**
  * @author quchao

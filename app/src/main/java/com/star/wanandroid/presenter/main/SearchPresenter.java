@@ -1,19 +1,21 @@
 package com.star.wanandroid.presenter.main;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.main.SearchContract;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.core.bean.main.search.TopSearchData;
+import com.star.wanandroid.core.dao.HistoryData;
+import com.star.wanandroid.utils.RxUtils;
+import com.star.wanandroid.widget.BaseObserver;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.main.SearchContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.search.TopSearchData;
-import json.chao.com.wanandroid.core.dao.HistoryData;
-import json.chao.com.wanandroid.utils.RxUtils;
-import json.chao.com.wanandroid.widget.BaseObserver;
 
 /**
  * @author quchao
@@ -45,8 +47,10 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
         addSubscribe(Observable.create((ObservableOnSubscribe<List<HistoryData>>) e -> {
             List<HistoryData> historyDataList = mDataManager.addHistoryData(data);
             e.onNext(historyDataList);
-        }).compose(RxUtils.rxSchedulerHelper()).subscribe(historyDataList ->
-                mView.judgeToTheSearchListActivity()));
+        })
+                .compose(RxUtils.rxSchedulerHelper())
+                .subscribe(historyDataList ->
+                        mView.judgeToTheSearchListActivity()));
     }
 
     @Override
@@ -57,17 +61,15 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Override
     public void getTopSearchData() {
         addSubscribe(mDataManager.getTopSearchData()
-                        .compose(RxUtils.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse<List<TopSearchData>>>(mView) {
-                            @Override
-                            public void onNext(BaseResponse<List<TopSearchData>> topSearchDataResponse) {
-                                if (topSearchDataResponse.getErrorCode() == BaseResponse.SUCCESS) {
-                                    mView.showTopSearchData(topSearchDataResponse);
-                                } else {
-                                    mView.showTopSearchDataFail();
-                                }
-                            }
-                        }));
+                .compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(new BaseObserver<List<TopSearchData>>(mView,
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_top_data)) {
+                    @Override
+                    public void onNext(List<TopSearchData> topSearchDataList) {
+                        mView.showTopSearchData(topSearchDataList);
+                    }
+                }));
     }
 
 }

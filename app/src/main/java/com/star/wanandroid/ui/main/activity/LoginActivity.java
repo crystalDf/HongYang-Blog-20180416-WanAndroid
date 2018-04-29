@@ -10,22 +10,21 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.activity.BaseActivity;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.main.LoginContract;
+import com.star.wanandroid.core.bean.main.login.LoginData;
+import com.star.wanandroid.core.event.LoginEvent;
+import com.star.wanandroid.presenter.main.LoginPresenter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.StatusBarUtil;
+import com.star.wanandroid.widget.RegisterPopupWindow;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.login.LoginData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.base.activity.BaseActivity;
-import json.chao.com.wanandroid.contract.main.LoginContract;
-import json.chao.com.wanandroid.core.event.LoginEvent;
-import json.chao.com.wanandroid.presenter.main.LoginPresenter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
-import json.chao.com.wanandroid.widget.RegisterPopupWindow;
 
 /**
  * @author quchao
@@ -87,12 +86,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void showLoginData(BaseResponse<LoginData> loginResponse) {
-        if (loginResponse == null || loginResponse.getData() == null) {
-            showLoginFail(getString(R.string.login_fail));
-            return;
-        }
-        LoginData loginData = loginResponse.getData();
+    public void showLoginData(LoginData loginData) {
         mPresenter.setLoginAccount(loginData.getUsername());
         mPresenter.setLoginPassword(loginData.getPassword());
         mPresenter.setLoginStatus(true);
@@ -102,18 +96,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void showRegisterData(BaseResponse<LoginData> loginResponse) {
-        if (loginResponse == null || loginResponse.getData() == null) {
-            showRegisterFail(getString(R.string.register_fail));
-            return;
-        }
-        mPresenter.getLoginData(loginResponse.getData().getUsername(),
-                loginResponse.getData().getPassword());
-    }
-
-    @Override
-    public void showLoginFail(String errorMsg) {
-        CommonUtils.showSnackMessage(this, errorMsg);
+    public void showRegisterData(LoginData loginData) {
+        mPresenter.getLoginData(loginData.getUsername(), loginData.getPassword());
     }
 
     @Override

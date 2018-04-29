@@ -5,13 +5,11 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.ui.project.viewholder.ProjectListViewHolder;
+import com.star.wanandroid.utils.ImageLoader;
 
 import java.util.List;
-
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.utils.ImageLoader;
-import json.chao.com.wanandroid.ui.project.viewholder.ProjectListViewHolder;
 
 /**
  * @author quchao

@@ -1,10 +1,10 @@
 package com.star.wanandroid.presenter.main;
 
-import javax.inject.Inject;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.main.SettingContract;
+import com.star.wanandroid.core.DataManager;
 
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.main.SettingContract;
-import json.chao.com.wanandroid.core.DataManager;
+import javax.inject.Inject;
 
 /**
  * @author quchao

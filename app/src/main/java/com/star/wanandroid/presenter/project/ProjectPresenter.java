@@ -1,16 +1,17 @@
 package com.star.wanandroid.presenter.project;
 
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.WanAndroidApp;
+import com.star.wanandroid.base.presenter.BasePresenter;
+import com.star.wanandroid.contract.project.ProjectContract;
+import com.star.wanandroid.core.DataManager;
+import com.star.wanandroid.core.bean.project.ProjectClassifyData;
+import com.star.wanandroid.utils.RxUtils;
+import com.star.wanandroid.widget.BaseObserver;
+
 import java.util.List;
 
 import javax.inject.Inject;
-
-import json.chao.com.wanandroid.core.DataManager;
-import json.chao.com.wanandroid.base.presenter.BasePresenter;
-import json.chao.com.wanandroid.contract.project.ProjectContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.project.ProjectClassifyData;
-import json.chao.com.wanandroid.utils.RxUtils;
-import json.chao.com.wanandroid.widget.BaseObserver;
 
 /**
  * @author quchao
@@ -35,17 +36,15 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View> implem
     @Override
     public void getProjectClassifyData() {
         addSubscribe(mDataManager.getProjectClassifyData()
-                        .compose(RxUtils.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse<List<ProjectClassifyData>>>(mView) {
-                            @Override
-                            public void onNext(BaseResponse<List<ProjectClassifyData>> projectClassifyResponse) {
-                                if (projectClassifyResponse.getErrorCode() == BaseResponse.SUCCESS) {
-                                    mView.showProjectClassifyData(projectClassifyResponse);
-                                } else {
-                                    mView.showProjectClassifyDataFail();
-                                }
-                            }
-                        }));
+                .compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(new BaseObserver<List<ProjectClassifyData>>(mView,
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_project_classify_data)) {
+                    @Override
+                    public void onNext(List<ProjectClassifyData> projectClassifyDataList) {
+                        mView.showProjectClassifyData(projectClassifyDataList);
+                    }
+                }));
     }
 
     @Override

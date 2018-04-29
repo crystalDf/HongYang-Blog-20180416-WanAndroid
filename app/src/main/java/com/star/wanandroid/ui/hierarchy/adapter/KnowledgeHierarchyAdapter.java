@@ -3,13 +3,12 @@ package com.star.wanandroid.ui.hierarchy.adapter;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.R;
+import com.star.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
+import com.star.wanandroid.ui.hierarchy.viewholder.KnowledgeHierarchyViewHolder;
+import com.star.wanandroid.utils.CommonUtils;
 
 import java.util.List;
-
-import json.chao.com.wanandroid.core.bean.hierarchy.KnowledgeHierarchyData;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.ui.hierarchy.viewholder.KnowledgeHierarchyViewHolder;
-import json.chao.com.wanandroid.utils.CommonUtils;
 
 /**
  * @author quchao

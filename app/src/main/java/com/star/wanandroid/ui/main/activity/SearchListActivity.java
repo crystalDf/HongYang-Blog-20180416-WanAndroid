@@ -13,27 +13,26 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.star.wanandroid.R;
+import com.star.wanandroid.app.Constants;
+import com.star.wanandroid.base.activity.AbstractRootActivity;
+import com.star.wanandroid.component.RxBus;
+import com.star.wanandroid.contract.main.SearchListContract;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
+import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
+import com.star.wanandroid.core.event.SwitchNavigationEvent;
+import com.star.wanandroid.core.event.SwitchProjectEvent;
+import com.star.wanandroid.presenter.main.SearchListPresenter;
+import com.star.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
+import com.star.wanandroid.utils.CommonUtils;
+import com.star.wanandroid.utils.JudgeUtils;
+import com.star.wanandroid.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import json.chao.com.wanandroid.R;
-import json.chao.com.wanandroid.app.Constants;
-import json.chao.com.wanandroid.base.activity.AbstractRootActivity;
-import json.chao.com.wanandroid.component.RxBus;
-import json.chao.com.wanandroid.contract.main.SearchListContract;
-import json.chao.com.wanandroid.core.bean.BaseResponse;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleData;
-import json.chao.com.wanandroid.core.bean.main.collect.FeedArticleListData;
-import json.chao.com.wanandroid.core.event.SwitchNavigationEvent;
-import json.chao.com.wanandroid.core.event.SwitchProjectEvent;
-import json.chao.com.wanandroid.presenter.main.SearchListPresenter;
-import json.chao.com.wanandroid.ui.mainpager.adapter.ArticleListAdapter;
-import json.chao.com.wanandroid.utils.CommonUtils;
-import json.chao.com.wanandroid.utils.JudgeUtils;
-import json.chao.com.wanandroid.utils.StatusBarUtil;
 
 /**
  * @author quchao
@@ -136,15 +135,15 @@ public class SearchListActivity extends AbstractRootActivity<SearchListPresenter
     }
 
     @Override
-    public void showSearchList(BaseResponse<FeedArticleListData> feedArticleListResponse) {
-        if (feedArticleListResponse == null
-                || feedArticleListResponse.getData() == null
-                || feedArticleListResponse.getData().getDatas() == null) {
-            showSearchListFail();
-            return;
+    public void reload() {
+        if (mPresenter != null) {
+            mPresenter.getSearchList(0, searchText);
         }
-        FeedArticleListData articleData = feedArticleListResponse.getData();
-        mArticleList = articleData.getDatas();
+    }
+
+    @Override
+    public void showSearchList(FeedArticleListData feedArticleListData) {
+        mArticleList = feedArticleListData.getDatas();
         if (isAddData) {
             if (mArticleList.size() > 0) {
                 mAdapter.addData(mArticleList);
@@ -158,28 +157,15 @@ public class SearchListActivity extends AbstractRootActivity<SearchListPresenter
     }
 
     @Override
-    public void reload() {
-        if (mPresenter != null) {
-            mPresenter.getSearchList(0, searchText);
-        }
-    }
-
-    @Override
-    public void showCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(this, getString(R.string.collect_success));
     }
 
     @Override
-    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCancelCollectArticleData(int position, FeedArticleData feedArticleData, FeedArticleListData feedArticleListData) {
         mAdapter.setData(position, feedArticleData);
         CommonUtils.showSnackMessage(this, getString(R.string.cancel_collect_success));
-    }
-
-    @Override
-    public void showSearchListFail() {
-        showError();
-        CommonUtils.showSnackMessage(this, getString(R.string.failed_to_obtain_search_data_list));
     }
 
     @Override
