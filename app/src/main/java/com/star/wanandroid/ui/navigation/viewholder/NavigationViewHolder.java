@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.star.wanandroid.R;
 import com.zhy.view.flowlayout.FlowLayout;
 
 import butterknife.BindView;

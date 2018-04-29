@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.R;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.core.bean.navigation.NavigationListData;
 import com.star.wanandroid.ui.navigation.viewholder.NavigationViewHolder;

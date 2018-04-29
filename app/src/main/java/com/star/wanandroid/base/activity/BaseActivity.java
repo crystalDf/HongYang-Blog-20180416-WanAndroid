@@ -7,6 +7,7 @@ import com.star.wanandroid.app.WanAndroidApp;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.di.component.ActivityComponent;
+import com.star.wanandroid.di.component.DaggerActivityComponent;
 import com.star.wanandroid.di.module.ActivityModule;
 import com.star.wanandroid.utils.CommonUtils;
 

@@ -20,7 +20,6 @@ import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.base.activity.BaseActivity;
 import com.star.wanandroid.component.RxBus;
 import com.star.wanandroid.contract.main.ArticleDetailContract;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 import com.star.wanandroid.core.event.CollectEvent;
 import com.star.wanandroid.presenter.main.ArticleDetailPresenter;
@@ -263,7 +262,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
     @Override
-    public void showCollectArticleData(BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCollectArticleData(FeedArticleListData feedArticleListData) {
         isCollect = true;
         mCollectItem.setTitle(R.string.cancel_collect);
         mCollectItem.setIcon(R.mipmap.ic_toolbar_like_p);
@@ -271,7 +270,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
     @Override
-    public void showCancelCollectArticleData(BaseResponse<FeedArticleListData> feedArticleListResponse) {
+    public void showCancelCollectArticleData(FeedArticleListData feedArticleListData) {
         isCollect = false;
         if (!isCollectPage) {
             mCollectItem.setTitle(R.string.collect);

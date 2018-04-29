@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.star.wanandroid.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

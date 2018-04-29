@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -75,6 +76,7 @@ dependencies {
     implementation "me.yokeyword:fragmentation-swipeback:$rootProject.fragmentationVersion"
     implementation "com.tencent.bugly:crashreport_upgrade:$rootProject.buglyVersion"
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
+    implementation "com.github.githubwing:ByeBurger:$rootProject.byeBurgerVersion"
 
     // canary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.leakcanaryVersion"

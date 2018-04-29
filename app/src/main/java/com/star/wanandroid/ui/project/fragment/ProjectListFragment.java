@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.star.wanandroid.R;
 import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.base.fragment.AbstractRootFragment;
 import com.star.wanandroid.contract.project.ProjectListContract;

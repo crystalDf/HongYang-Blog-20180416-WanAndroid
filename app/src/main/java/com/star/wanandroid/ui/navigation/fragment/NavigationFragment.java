@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.star.wanandroid.R;
 import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.base.fragment.AbstractRootFragment;
 import com.star.wanandroid.contract.navigation.NavigationContract;

@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.star.wanandroid.R;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.ui.project.viewholder.ProjectListViewHolder;
 import com.star.wanandroid.utils.ImageLoader;
