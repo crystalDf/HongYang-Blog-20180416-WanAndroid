@@ -26,11 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/2/26
- */
-
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View, View.OnClickListener {
 
     @BindView(R.id.login_group)
