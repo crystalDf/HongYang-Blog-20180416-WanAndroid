@@ -81,21 +81,23 @@ public class WanAndroidApp extends Application {
         initBugly();
 
         initLogger();
-
     }
 
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
+
         if (level == TRIM_MEMORY_UI_HIDDEN) {
             Glide.get(this).clearMemory();
         }
+
         Glide.get(this).trimMemory(level);
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
+
         Glide.get(this).clearMemory();
     }
 
@@ -139,7 +141,7 @@ public class WanAndroidApp extends Application {
                     .httpModule(new HttpModule())
                     .build();
         }
+
         return appComponent;
     }
-
 }
