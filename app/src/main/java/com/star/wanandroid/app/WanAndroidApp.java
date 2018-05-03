@@ -40,12 +40,14 @@ public class WanAndroidApp extends Application {
     static {
         AppCompatDelegate.setDefaultNightMode(
                 AppCompatDelegate.MODE_NIGHT_NO);
+
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, refreshLayout) -> {
             //全局设置主题颜色
             refreshLayout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
             //指定为Delivery Header，默认是贝塞尔雷达Header
             return new DeliveryHeader(context);
         });
+
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
             //默认是 BallPulseFooter
             return new BallPulseFooter(context).setAnimatingColor(ContextCompat.getColor(context, R.color.colorPrimary));
@@ -60,18 +62,21 @@ public class WanAndroidApp extends Application {
 
     public static RefWatcher getRefWatcher(Context context) {
         WanAndroidApp application = (WanAndroidApp) context.getApplicationContext();
+
         return application.refWatcher;
     }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+
         MultiDex.install(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         instance = this;
 
         initGreenDao();
