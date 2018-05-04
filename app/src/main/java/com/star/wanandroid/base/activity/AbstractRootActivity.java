@@ -23,7 +23,7 @@ public abstract class AbstractRootActivity<T extends BasePresenter> extends Base
 
     @Override
     protected void initEventAndData() {
-        mNormalView = (ViewGroup) findViewById(R.id.normal_view);
+        mNormalView = findViewById(R.id.normal_view);
         if (mNormalView == null) {
             throw new IllegalStateException(
                     "The subclass of RootActivity must contain a View named 'mNormalView'.");
