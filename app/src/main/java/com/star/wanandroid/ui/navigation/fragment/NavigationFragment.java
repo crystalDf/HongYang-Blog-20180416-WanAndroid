@@ -25,11 +25,6 @@ import q.rorbin.verticaltablayout.widget.ITabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
-
 public class NavigationFragment extends AbstractRootFragment<NavigationPresenter> implements NavigationContract.View {
 
     @BindView(R.id.navigation_tab_layout)
@@ -53,11 +48,6 @@ public class NavigationFragment extends AbstractRootFragment<NavigationPresenter
         args.putString(Constants.ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override

@@ -47,10 +47,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * @author quchao
- * @date 2018/3/1
- */
 
 public class SearchDialogFragment extends BaseDialogFragment<SearchPresenter> implements
         SearchContract.View,
@@ -92,11 +88,6 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchPresenter> im
     public void onStart() {
         super.onStart();
         initDialog();
-    }
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override

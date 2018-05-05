@@ -27,10 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/2/23
- */
 
 public class KnowledgeHierarchyListFragment extends AbstractRootFragment<KnowledgeHierarchyListPresenter>
         implements KnowledgeHierarchyListContract.View {
@@ -47,11 +43,6 @@ public class KnowledgeHierarchyListFragment extends AbstractRootFragment<Knowled
     private boolean isRefresh = true;
     private int articlePosition;
     private ActivityOptions mOptions;
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
-    }
 
     @Override
     protected int getLayoutId() {

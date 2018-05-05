@@ -23,10 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> implements ProjectContract.View {
 
@@ -69,11 +65,6 @@ public class ProjectFragment extends AbstractRootFragment<ProjectPresenter> impl
         if (CommonUtils.isNetworkConnected()) {
             showLoading();
         }
-    }
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override

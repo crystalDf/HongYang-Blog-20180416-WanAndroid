@@ -31,10 +31,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/4/2
- */
 
 public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter> implements
         UsageDialogContract.View,
@@ -61,11 +57,6 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
     public void onStart() {
         super.onStart();
         initDialog();
-    }
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override

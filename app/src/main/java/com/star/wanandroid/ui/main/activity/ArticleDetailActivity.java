@@ -31,10 +31,6 @@ import java.lang.reflect.Method;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/2/13
- */
 
 public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> implements ArticleDetailContract.View {
 
@@ -69,11 +65,6 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     public void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
-    }
-
-    @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
     }
 
     @Override

@@ -79,11 +79,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }

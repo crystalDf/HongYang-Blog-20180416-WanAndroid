@@ -25,10 +25,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2018/2/24
- */
 
 public class ProjectListFragment extends AbstractRootFragment<ProjectListPresenter> implements ProjectListContract.View {
 
@@ -42,11 +38,6 @@ public class ProjectListFragment extends AbstractRootFragment<ProjectListPresent
     private boolean isRefresh = true;
     private int mCurrentPage;
     private int cid;
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
-    }
 
     @Override
     protected int getLayoutId() {

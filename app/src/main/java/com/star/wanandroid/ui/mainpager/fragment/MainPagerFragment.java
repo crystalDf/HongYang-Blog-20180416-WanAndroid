@@ -40,10 +40,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * @author quchao
- * @date 2017/11/29
- */
 
 public class MainPagerFragment extends AbstractRootFragment<MainPagerPresenter> implements MainPagerContract.View {
 
@@ -90,11 +86,6 @@ public class MainPagerFragment extends AbstractRootFragment<MainPagerPresenter> 
         args.putString(Constants.ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    protected void initInject() {
-        getFragmentComponent().inject(this);
     }
 
     @Override
