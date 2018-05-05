@@ -1,5 +1,6 @@
 package com.star.wanandroid.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,7 +30,16 @@ import com.star.wanandroid.utils.CommonUtils;
 import com.star.wanandroid.utils.logger.TxtFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
 
-public class WanAndroidApp extends Application {
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+
+public class WanAndroidApp extends Application implements HasActivityInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Activity> mAndroidInjector;
 
     private static WanAndroidApp instance;
     private RefWatcher refWatcher;
@@ -76,6 +86,11 @@ public class WanAndroidApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(instance))
+                .httpModule(new HttpModule())
+                .build().inject(this);
 
         instance = this;
 
@@ -148,5 +163,10 @@ public class WanAndroidApp extends Application {
         }
 
         return appComponent;
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return mAndroidInjector;
     }
 }

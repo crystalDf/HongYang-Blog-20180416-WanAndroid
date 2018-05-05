@@ -21,14 +21,6 @@ public interface LoginContract {
          * @param loginData LoginData
          */
         void showRegisterData(LoginData loginData);
-
-        /**
-         * Show register fail
-         *
-         * @param errorMsg error message
-         */
-        void showRegisterFail(String errorMsg);
-
     }
 
     interface Presenter extends AbstractPresenter<View> {

@@ -1,28 +1,33 @@
 package com.star.wanandroid.base.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.star.wanandroid.R;
-import com.star.wanandroid.app.WanAndroidApp;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.di.component.DaggerFragmentComponent;
-import com.star.wanandroid.di.component.FragmentComponent;
-import com.star.wanandroid.di.module.FragmentModule;
 import com.star.wanandroid.utils.CommonUtils;
 
 import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseDialogFragment<T extends AbstractPresenter> extends AbstractSimpleDialogFragment implements BaseView {
 
     @Inject
     protected T mPresenter;
-    private FragmentComponent mBuild;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        AndroidSupportInjection.inject(this);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initInject();
+
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
@@ -34,16 +39,6 @@ public abstract class BaseDialogFragment<T extends AbstractPresenter> extends Ab
             mPresenter.detachView();
         }
         super.onDestroyView();
-    }
-
-    public FragmentComponent getFragmentComponent() {
-        if (mBuild == null) {
-            mBuild = DaggerFragmentComponent.builder()
-                    .appComponent(WanAndroidApp.getAppComponent())
-                    .fragmentModule(new FragmentModule(this))
-                    .build();
-        }
-        return mBuild;
     }
 
     @Override
@@ -110,10 +105,4 @@ public abstract class BaseDialogFragment<T extends AbstractPresenter> extends Ab
     public void showLogoutView() {
 
     }
-
-    /**
-     * 注入当前Fragment所需的依赖
-     */
-    protected abstract void initInject();
-
 }

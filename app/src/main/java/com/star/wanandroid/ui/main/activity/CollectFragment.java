@@ -12,7 +12,6 @@ import com.star.wanandroid.R;
 import com.star.wanandroid.app.Constants;
 import com.star.wanandroid.base.fragment.AbstractRootFragment;
 import com.star.wanandroid.contract.main.CollectContract;
-import com.star.wanandroid.core.bean.BaseResponse;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleListData;
 import com.star.wanandroid.presenter.main.CollectPresenter;
@@ -98,9 +97,11 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
 
     @Override
     public void showRefreshEvent() {
-        mCurrentPage = 0;
-        isRefresh = true;
-        mPresenter.getCollectList(mCurrentPage);
+        if (isVisible()) {
+            mCurrentPage = 0;
+            isRefresh = true;
+            mPresenter.getCollectList(mCurrentPage);
+        }
     }
 
     @OnClick({R.id.collect_floating_action_btn})

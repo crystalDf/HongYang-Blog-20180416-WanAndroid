@@ -4,7 +4,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -57,11 +56,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void initEventAndData() {
         mRegisterBtn.setOnClickListener(this);
         mPopupWindow = new RegisterPopupWindow(this, this);
+        mPopupWindow.setBackgroundDrawable(getDrawable(R.color.transparent));
         mPopupWindow.setAnimationStyle(R.style.popup_window_animation);
-        mPopupWindow.setOnDismissListener(() -> {
-            setBackgroundAlpha();
-            mRegisterBtn.setOnClickListener(this);
-        });
+        mPopupWindow.setOnDismissListener(() -> mRegisterBtn.setOnClickListener(this));
         StatusBarUtil.immersive(this);
         StatusBarUtil.setPaddingSmart(this, mToolbar);
         mToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
@@ -93,11 +90,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void showRegisterData(LoginData loginData) {
         mPresenter.getLoginData(loginData.getUsername(), loginData.getPassword());
-    }
-
-    @Override
-    public void showRegisterFail(String errorMsg) {
-        CommonUtils.showSnackMessage(this, errorMsg);
     }
 
     @Override
@@ -134,15 +126,4 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
         mPresenter.getRegisterData(account, password, rePassword);
     }
-
-    /**
-     * 设置屏幕透明度
-     */
-    public void setBackgroundAlpha() {
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        // 0.0~1.0
-        lp.alpha = 1.0f;
-        getWindow().setAttributes(lp);
-    }
-
 }

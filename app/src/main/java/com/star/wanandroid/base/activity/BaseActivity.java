@@ -1,23 +1,38 @@
 package com.star.wanandroid.base.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.star.wanandroid.R;
-import com.star.wanandroid.app.WanAndroidApp;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
-import com.star.wanandroid.di.component.ActivityComponent;
-import com.star.wanandroid.di.component.DaggerActivityComponent;
-import com.star.wanandroid.di.module.ActivityModule;
 import com.star.wanandroid.utils.CommonUtils;
 
 import javax.inject.Inject;
 
-public abstract class BaseActivity<T extends AbstractPresenter> extends AbstractSimpleActivity implements BaseView {
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
+public abstract class BaseActivity<T extends AbstractPresenter> extends AbstractSimpleActivity
+        implements HasSupportFragmentInjector, BaseView {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
 
     @Inject
     protected T mPresenter;
-    private ActivityComponent mBuild;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        AndroidInjection.inject(this);
+    }
 
     @Override
     protected void onDestroy() {
@@ -27,23 +42,18 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
         super.onDestroy();
     }
 
-    protected ActivityComponent getActivityComponent() {
-        if (mBuild == null) {
-            mBuild = DaggerActivityComponent.builder()
-                    .appComponent(WanAndroidApp.getAppComponent())
-                    .activityModule(new ActivityModule(this))
-                    .build();
-        }
-        return mBuild;
-    }
-
     @Override
     protected void onViewCreated() {
         super.onViewCreated();
-        initInject();
+
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return mFragmentDispatchingAndroidInjector;
     }
 
     @Override
@@ -112,10 +122,4 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
     public void showLogoutView() {
 
     }
-
-    /**
-     * 注入当前Activity所需的依赖
-     */
-    protected abstract void initInject();
-
 }
