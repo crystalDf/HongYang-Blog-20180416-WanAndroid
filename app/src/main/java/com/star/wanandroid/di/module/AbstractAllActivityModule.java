@@ -6,6 +6,7 @@ import com.star.wanandroid.ui.main.activity.AboutUsActivity;
 import com.star.wanandroid.ui.main.activity.ArticleDetailActivity;
 import com.star.wanandroid.ui.main.activity.LoginActivity;
 import com.star.wanandroid.ui.main.activity.MainActivity;
+import com.star.wanandroid.ui.main.activity.RegisterActivity;
 import com.star.wanandroid.ui.main.activity.SearchListActivity;
 import com.star.wanandroid.ui.main.activity.SplashActivity;
 
@@ -29,6 +30,9 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = LoginActivityModule.class)
     abstract LoginActivity contributesLoginActivityInjector();
+
+    @ContributesAndroidInjector(modules = RegisterActivityModule.class)
+    abstract RegisterActivity contributesRegisterActivityInjector();
 
     @ContributesAndroidInjector(modules = AboutUsActivityModule.class)
     abstract AboutUsActivity contributesAboutUsActivityInjector();

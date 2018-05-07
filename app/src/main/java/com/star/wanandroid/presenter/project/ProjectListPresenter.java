@@ -15,10 +15,6 @@ import com.star.wanandroid.widget.BaseObserver;
 
 import javax.inject.Inject;
 
-/**
- * @author quchao
- * @date 2018/2/24
- */
 
 public class ProjectListPresenter extends BasePresenter<ProjectListContract.View> implements ProjectListContract.Presenter {
 
@@ -40,7 +36,6 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
         addSubscribe(RxBus.getDefault().toFlowable(JumpToTheTopEvent.class)
                 .subscribe(jumpToTheTopEvent -> mView.showJumpToTheTop()));
     }
-
 
     @Override
     public void getProjectListData(int page, int cid) {
@@ -86,6 +81,4 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
                     }
                 }));
     }
-
-
 }

@@ -15,10 +15,6 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 
-/**
- * @author quchao
- * @date 2017/11/27
- */
 
 @Singleton
 @Component(modules = {

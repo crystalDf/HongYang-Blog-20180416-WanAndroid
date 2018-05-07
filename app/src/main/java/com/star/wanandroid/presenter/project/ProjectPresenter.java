@@ -13,10 +13,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * @author quchao
- * @date 2018/2/11
- */
 
 public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
 
