@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.leakcanary.RefWatcher;
+import com.star.wanandroid.app.WanAndroidApp;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -34,9 +37,9 @@ public abstract class AbstractSimpleDialogFragment extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //LeakCanary
-//        RefWatcher refWatcher = GeeksApp.getRefWatcher(getActivity());
-//        refWatcher.watch(this);
+
+        RefWatcher refWatcher = WanAndroidApp.getRefWatcher(getActivity());
+        refWatcher.watch(this);
     }
 
     /**
