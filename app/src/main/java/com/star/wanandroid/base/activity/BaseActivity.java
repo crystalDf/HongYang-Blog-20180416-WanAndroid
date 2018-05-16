@@ -38,6 +38,7 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
     protected void onDestroy() {
         if (mPresenter != null) {
             mPresenter.detachView();
+            mPresenter = null;
         }
         super.onDestroy();
     }
