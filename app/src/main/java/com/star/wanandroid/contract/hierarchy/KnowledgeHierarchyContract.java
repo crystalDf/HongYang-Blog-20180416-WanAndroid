@@ -24,6 +24,6 @@ public interface KnowledgeHierarchyContract {
         /**
          * 知识列表
          */
-        void getKnowledgeHierarchyData();
+        void getKnowledgeHierarchyData(boolean isShowError);
     }
 }

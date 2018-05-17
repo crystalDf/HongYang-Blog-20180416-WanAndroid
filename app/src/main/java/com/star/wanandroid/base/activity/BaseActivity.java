@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 
-import com.star.wanandroid.R;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.utils.CommonUtils;
@@ -92,16 +91,6 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends Abstract
     @Override
     public void reload() {
 
-    }
-
-    @Override
-    public void showCollectFail() {
-        CommonUtils.showSnackMessage(this, getString(R.string.collect_fail));
-    }
-
-    @Override
-    public void showCancelCollectFail() {
-        CommonUtils.showSnackMessage(this, getString(R.string.cancel_collect_fail));
     }
 
     @Override

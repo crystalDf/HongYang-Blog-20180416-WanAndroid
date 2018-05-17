@@ -3,7 +3,6 @@ package com.star.wanandroid.base.fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.star.wanandroid.R;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.utils.CommonUtils;
@@ -37,7 +36,9 @@ public abstract class BaseDialogFragment<T extends AbstractPresenter> extends Ab
     public void onDestroyView() {
         if (mPresenter != null) {
             mPresenter.detachView();
+            mPresenter = null;
         }
+
         super.onDestroyView();
     }
 
@@ -70,20 +71,6 @@ public abstract class BaseDialogFragment<T extends AbstractPresenter> extends Ab
     @Override
     public void reload() {
 
-    }
-
-    @Override
-    public void showCollectFail() {
-        if (getActivity() != null) {
-            CommonUtils.showSnackMessage(getActivity(), getString(R.string.collect_fail));
-        }
-    }
-
-    @Override
-    public void showCancelCollectFail() {
-        if (getActivity() != null) {
-            CommonUtils.showSnackMessage(getActivity(), getString(R.string.cancel_collect_fail));
-        }
     }
 
     @Override

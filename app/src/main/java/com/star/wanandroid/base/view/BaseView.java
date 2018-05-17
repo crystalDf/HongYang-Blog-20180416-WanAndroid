@@ -18,10 +18,6 @@ public interface BaseView {
 
     void showLogoutView();
 
-    void showCollectFail();
-
-    void showCancelCollectFail();
-
     void showCollectSuccess();
 
     void showCancelCollectSuccess();

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.star.wanandroid.R;
 import com.star.wanandroid.base.presenter.AbstractPresenter;
 import com.star.wanandroid.base.view.BaseView;
 import com.star.wanandroid.utils.CommonUtils;
@@ -28,16 +27,18 @@ public abstract class BaseFragment<T extends AbstractPresenter> extends Abstract
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
-        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onDestroyView() {
         if (mPresenter != null) {
             mPresenter.detachView();
+            mPresenter = null;
         }
         super.onDestroyView();
     }
@@ -71,16 +72,6 @@ public abstract class BaseFragment<T extends AbstractPresenter> extends Abstract
     @Override
     public void reload() {
 
-    }
-
-    @Override
-    public void showCollectFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.collect_fail));
-    }
-
-    @Override
-    public void showCancelCollectFail() {
-        CommonUtils.showSnackMessage(_mActivity, getString(R.string.cancel_collect_fail));
     }
 
     @Override
