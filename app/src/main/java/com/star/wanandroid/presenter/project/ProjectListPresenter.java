@@ -38,12 +38,13 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
     }
 
     @Override
-    public void getProjectListData(int page, int cid) {
+    public void getProjectListData(int page, int cid, boolean isShowError) {
         addSubscribe(mDataManager.getProjectListData(page, cid)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .subscribeWith(new BaseObserver<ProjectListData>(mView,
-                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_project_list)) {
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_project_list),
+                        isShowError) {
                     @Override
                     public void onNext(ProjectListData projectListData) {
                         mView.showProjectListData(projectListData);

@@ -51,12 +51,13 @@ public class SearchListPresenter extends BasePresenter<SearchListContract.View> 
     }
 
     @Override
-    public void getSearchList(int page, String k) {
+    public void getSearchList(int page, String k, boolean isShowError) {
         addSubscribe(mDataManager.getSearchList(page, k)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
-                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_search_data_list)) {
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_search_data_list),
+                        isShowError) {
                     @Override
                     public void onNext(FeedArticleListData feedArticleListData) {
                         mView.showSearchList(feedArticleListData);

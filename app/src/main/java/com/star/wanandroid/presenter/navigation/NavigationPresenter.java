@@ -34,12 +34,13 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
     }
 
     @Override
-    public void getNavigationListData() {
+    public void getNavigationListData(boolean isShowError) {
         addSubscribe(mDataManager.getNavigationListData()
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .subscribeWith(new BaseObserver<List<NavigationListData>>(mView,
-                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_navigation_list)) {
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_navigation_list),
+                        isShowError) {
                     @Override
                     public void onNext(List<NavigationListData> navigationDataList) {
                         mView.showNavigationListData(navigationDataList);

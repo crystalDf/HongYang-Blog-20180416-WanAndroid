@@ -95,7 +95,7 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
         if (isVisible()) {
             mCurrentPage = 0;
             isRefresh = true;
-            mPresenter.getCollectList(mCurrentPage);
+            mPresenter.getCollectList(mCurrentPage, false);
         }
     }
 
@@ -168,7 +168,8 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
         });
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
-        mPresenter.getCollectList(mCurrentPage);
+        mRecyclerView.setHasFixedSize(true);
+        mPresenter.getCollectList(mCurrentPage, true);
     }
 
     private void setRefresh() {
@@ -180,7 +181,7 @@ public class CollectFragment extends AbstractRootFragment<CollectPresenter> impl
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mCurrentPage++;
             isRefresh = false;
-            mPresenter.getCollectList(mCurrentPage);
+            mPresenter.getCollectList(mCurrentPage, false);
             refreshLayout.finishLoadMore(1000);
         });
     }
