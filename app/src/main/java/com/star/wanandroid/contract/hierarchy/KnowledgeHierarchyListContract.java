@@ -54,7 +54,7 @@ public interface KnowledgeHierarchyListContract {
          * @param page page num
          * @param cid second page id
          */
-        void getKnowledgeHierarchyDetailData(int page, int cid);
+        void getKnowledgeHierarchyDetailData(int page, int cid, boolean isShowError);
 
         /**
          * Add collect article

@@ -50,7 +50,7 @@ public interface ProjectListContract {
          * @param page page num
          * @param cid second page id
          */
-        void getProjectListData(int page, int cid);
+        void getProjectListData(int page, int cid, boolean isShowError);
 
         /**
          * Add collect outside article

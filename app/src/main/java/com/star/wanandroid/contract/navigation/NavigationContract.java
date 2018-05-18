@@ -24,7 +24,7 @@ public interface NavigationContract {
         /**
          * Get navigation list data
          */
-        void getNavigationListData();
+        void getNavigationListData(boolean isShowError);
     }
 
 }

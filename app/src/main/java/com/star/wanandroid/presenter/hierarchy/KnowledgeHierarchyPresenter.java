@@ -30,12 +30,13 @@ public class KnowledgeHierarchyPresenter extends BasePresenter<KnowledgeHierarch
     }
 
     @Override
-    public void getKnowledgeHierarchyData() {
+    public void getKnowledgeHierarchyData(boolean isShowError) {
         addSubscribe(mDataManager.getKnowledgeHierarchyData()
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .subscribeWith(new BaseObserver<List<KnowledgeHierarchyData>>(mView,
-                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_knowledge_data)) {
+                        WanAndroidApp.getInstance().getString(R.string.failed_to_obtain_knowledge_data),
+                        isShowError) {
                     @Override
                     public void onNext(List<KnowledgeHierarchyData> knowledgeHierarchyDataList) {
                         mView.showKnowledgeHierarchyData(knowledgeHierarchyDataList);

@@ -74,7 +74,9 @@ public interface MainPagerContract {
         /**
          * Get feed article list
          */
-        void getFeedArticleList();
+        void getFeedArticleList(boolean isShowError);
+
+        void loadMoreData();
 
         /**
          * Add collect article
@@ -95,12 +97,12 @@ public interface MainPagerContract {
         /**
          * Get banner data
          */
-        void getBannerData();
+        void getBannerData(boolean isShowError);
 
         /**
          * Auto refresh
          */
-        void autoRefresh();
+        void autoRefresh(boolean isShowError);
 
         /**
          * Load more

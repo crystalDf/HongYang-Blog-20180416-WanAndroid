@@ -43,7 +43,7 @@ public interface SearchListContract {
          * @param page page
          * @param k POST search key
          */
-        void getSearchList(int page, String k);
+        void getSearchList(int page, String k, boolean isShowError);
 
         /**
          * Add collect article

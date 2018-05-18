@@ -39,7 +39,7 @@ public interface CollectContract {
          *
          * @param page page number
          */
-        void getCollectList(int page);
+        void getCollectList(int page, boolean isShowError);
 
         /**
          * Cancel collect article
