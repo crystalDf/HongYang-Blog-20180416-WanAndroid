@@ -4,14 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 import com.star.wanandroid.utils.CommonUtils;
 
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public abstract class BaseDialogFragment<T extends AbstractPresenter> extends AbstractSimpleDialogFragment implements BaseView {
+public abstract class BaseDialogFragment<T extends AbstractPresenter> extends AbstractSimpleDialogFragment implements AbstractView {
 
     @Inject
     protected T mPresenter;

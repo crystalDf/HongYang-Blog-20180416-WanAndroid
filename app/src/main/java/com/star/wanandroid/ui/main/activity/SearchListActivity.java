@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.star.wanandroid.R;
 import com.star.wanandroid.app.Constants;
-import com.star.wanandroid.base.activity.AbstractRootActivity;
+import com.star.wanandroid.base.activity.BaseRootActivity;
 import com.star.wanandroid.component.RxBus;
 import com.star.wanandroid.contract.main.SearchListContract;
 import com.star.wanandroid.core.bean.main.collect.FeedArticleData;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @date 2018/3/13
  */
 
-public class SearchListActivity extends AbstractRootActivity<SearchListPresenter> implements SearchListContract.View {
+public class SearchListActivity extends BaseRootActivity<SearchListPresenter> implements SearchListContract.View {
 
     @BindView(R.id.common_toolbar)
     Toolbar mToolbar;

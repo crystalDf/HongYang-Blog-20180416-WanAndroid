@@ -1,14 +1,14 @@
 package com.star.wanandroid.contract.project;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 import com.star.wanandroid.core.bean.project.ProjectClassifyData;
 
 import java.util.List;
 
 public interface ProjectContract {
 
-    interface View extends BaseView {
+    interface View extends AbstractView {
 
         /**
          * Show project classify data

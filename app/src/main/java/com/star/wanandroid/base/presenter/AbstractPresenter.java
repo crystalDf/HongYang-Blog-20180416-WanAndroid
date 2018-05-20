@@ -1,10 +1,10 @@
 package com.star.wanandroid.base.presenter;
 
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 
 import io.reactivex.disposables.Disposable;
 
-public interface AbstractPresenter<T extends BaseView> {
+public interface AbstractPresenter<T extends AbstractView> {
 
     void attachView(T view);
 

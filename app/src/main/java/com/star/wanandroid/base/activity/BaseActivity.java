@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 import com.star.wanandroid.utils.CommonUtils;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public abstract class BaseActivity<T extends AbstractPresenter> extends AbstractSimpleActivity
-        implements HasSupportFragmentInjector, BaseView {
+        implements HasSupportFragmentInjector, AbstractView {
 
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;

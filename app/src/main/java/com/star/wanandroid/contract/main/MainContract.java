@@ -1,11 +1,11 @@
 package com.star.wanandroid.contract.main;
 
 import com.star.wanandroid.base.presenter.AbstractPresenter;
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 
 public interface MainContract {
 
-    interface View extends BaseView {
+    interface View extends AbstractView {
 
         /**
          * Show switch project

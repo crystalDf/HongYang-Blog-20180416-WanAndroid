@@ -1,12 +1,12 @@
 package com.star.wanandroid.base.presenter;
 
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 import com.star.wanandroid.core.DataManager;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public class BasePresenter<T extends BaseView> implements AbstractPresenter<T> {
+public class BasePresenter<T extends AbstractView> implements AbstractPresenter<T> {
 
     protected T mView;
     private CompositeDisposable mCompositeDisposable;

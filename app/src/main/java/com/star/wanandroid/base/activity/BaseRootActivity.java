@@ -8,7 +8,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.star.wanandroid.R;
 import com.star.wanandroid.base.presenter.BasePresenter;
 
-public abstract class AbstractRootActivity<T extends BasePresenter> extends BaseActivity<T> {
+public abstract class BaseRootActivity<T extends BasePresenter> extends BaseActivity<T> {
 
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;

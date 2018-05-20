@@ -4,41 +4,35 @@ import android.text.TextUtils;
 
 import com.star.wanandroid.R;
 import com.star.wanandroid.app.WanAndroidApp;
-import com.star.wanandroid.base.view.BaseView;
+import com.star.wanandroid.base.view.AbstractView;
 import com.star.wanandroid.core.http.exception.ServerException;
 import com.star.wanandroid.utils.LogHelper;
 
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
-/**
- * @author quchao
- * @date 2017/11/27
- *
- * @param <T>
- */
 
 public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
-    private BaseView mView;
+    private AbstractView mView;
     private String mErrorMsg;
     private boolean isShowError = true;
 
-    protected BaseObserver(BaseView view){
+    protected BaseObserver(AbstractView view){
         this.mView = view;
     }
 
-    protected BaseObserver(BaseView view, String errorMsg){
+    protected BaseObserver(AbstractView view, String errorMsg){
         this.mView = view;
         this.mErrorMsg = errorMsg;
     }
 
-    protected BaseObserver(BaseView view, boolean isShowError){
+    protected BaseObserver(AbstractView view, boolean isShowError){
         this.mView = view;
         this.isShowError = isShowError;
     }
 
-    protected BaseObserver(BaseView view, String errorMsg, boolean isShowError){
+    protected BaseObserver(AbstractView view, String errorMsg, boolean isShowError){
         this.mView = view;
         this.mErrorMsg = errorMsg;
         this.isShowError = isShowError;
