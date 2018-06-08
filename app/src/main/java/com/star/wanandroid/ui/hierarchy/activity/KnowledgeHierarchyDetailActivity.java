@@ -29,10 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * @author quchao
- * @date 2018/2/23
- */
 
 public class KnowledgeHierarchyDetailActivity extends BaseActivity<KnowledgeHierarchyDetailPresenter>
         implements KnowledgeHierarchyDetailContract.View {
